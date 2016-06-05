@@ -130,7 +130,7 @@ auto d = elem->get_module_data<test::data>(ID);
 ```
 
 ## interp_met modules
-Meterological interpolation functions are slightly different than the above. They should all declare an interpolant in their per-face data store
+Meterological interpolation functions are slightly different than the above. They should all declare an interpolant in their per-face data store. This must be on a per-element basis to ensure parallelism is possible.
 
 ```cpp
     struct data : public face_info
