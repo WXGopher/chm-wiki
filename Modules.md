@@ -17,7 +17,7 @@ Data parallel modules implement a ```run``` function that takes as input a singl
 
 The constructor is used to set a module to be the correct parallel type.
 
-```
+``` cpp
 class data_parallel_example : public module_base
 {
 public:
