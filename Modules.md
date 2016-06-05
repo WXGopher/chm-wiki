@@ -128,3 +128,6 @@ d->my_data = 5;
 #access later
 auto d = elem->get_module_data<test::data>(ID); 
 ```
+
+## interp_met modules
+Meterological interpolation functions are slightly different than the above. They should all declare an interpolant in a sub
