@@ -35,7 +35,7 @@ data_parallel_example::data_parallel_example(config_file cfg)
 
 ## Domain parallel
 Domain parallel modules implement a run function that takes the entire mesh domain. The module must iterate over the faces of the domain to gain access to each element. This may be done in parallel but must be explicitly done by the module.
-```
+```cpp
 class domain_parallel_example : public module_base
 {
 public:
@@ -63,7 +63,7 @@ void run(mesh domain, boost::shared_ptr<global> global_param)
 
 ## init()
 In all cases a module may implement the ```init``` function.
-```
+```cpp
 void example_module::init(mesh domain, boost::shared_ptr<global> global_param)
 ```
 Regardless of if the module is data or domain parallel, this function receives the entire mesh. ```init``` is called exactly once, after all other model setup has occurred, but prior to the main model execution loop. It is responsible for any initialization required by the model. An example of a complicated ```init``` is found in [Liston_wind](https://github.com/Chrismarsh/CHM/blob/master/src/modules/interp_met/Liston_wind.cpp) where the ```init``` function is used to pre-compute the wind curvature function.
@@ -73,7 +73,7 @@ Regardless of if the module is data or domain parallel, this function receives t
 ### Dependencies
 In the constructor, a module declares itself to ```provides``` a set of variables and optionally ```depends``` upon other variables. Lastly, it may ```optionally``` depend upon a variable. If the the variable is not present, module dependency checks will still succeed, but the module *must* check prior to access to avoid a segfault. If a
 
-```
+```cpp
 # from another modules
 depends("ilwr");
 
@@ -86,11 +86,11 @@ provides("dQ");
 
 ### Variable access
 Modules read from a variable stored on the mesh element via
-```
+```cpp
 auto albedo = elem->face_data("snow_albedo");
 ```
 Modules may *only* write to variables they provide via
-```
+```cpp
 elem->set_face_data("dQ", 100.0);
 ```
 
