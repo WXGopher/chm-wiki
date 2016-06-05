@@ -36,15 +36,15 @@ data_parallel_example::data_parallel_example(config_file cfg)
 ## Domain parallel
 Domain parallel modules implement a run function that takes the entire mesh domain. The module must iterate over the faces of the domain to gain access to each element. This may be done in parallel but must be explicitly done by the module.
 ```
-class data_parallel_example : public module_base
+class domain_parallel_example : public module_base
 {
 public:
-    data_parallel_example(config_file cfg);
-    ~data_parallel_example();
+    domain_parallel_example(config_file cfg);
+    ~domain_parallel_example();
     void run(mesh domain, boost::shared_ptr<global> global_param);
 }; 
 
-data_parallel_example::data_parallel_example(config_file cfg)
+domain_parallel_example::domain_parallel_example(config_file cfg)
         :module_base(parallel::domain)
 {
 ...
@@ -60,5 +60,12 @@ void run(mesh domain, boost::shared_ptr<global> global_param)
     }
 }
 ```
+
+## init()
+In all cases a module may implement the ```init``` function.
+```
+void example_module::init(mesh domain, boost::shared_ptr<global> global_param)
+```
+Regardless of if the module is data or domain parallel, this function receives the entire mesh. ```init``` is called exactly once, after all other model setup has occurred, but prior to the main model execution loop. It is responsible for any initialization required by the model. An example of a complicated ```init``` is found in [Liston_wind](Liston_wind.cpp)
 
 
