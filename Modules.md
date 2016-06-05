@@ -68,4 +68,4 @@ void example_module::init(mesh domain, boost::shared_ptr<global> global_param)
 ```
 Regardless of if the module is data or domain parallel, this function receives the entire mesh. ```init``` is called exactly once, after all other model setup has occurred, but prior to the main model execution loop. It is responsible for any initialization required by the model. An example of a complicated ```init``` is found in [Liston_wind](https://github.com/Chrismarsh/CHM/blob/master/src/modules/interp_met/Liston_wind.cpp) where the ```init``` function is used to pre-compute the wind curvature function.
 
-
+#
