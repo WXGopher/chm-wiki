@@ -94,4 +94,25 @@ Modules may *only* write to variables they provide via
 elem->set_face_data("dQ", 100.0);
 ```
 
+## Data storage
+Frequently, the module must maintain a set of data that is separate from the variables that are exposed to other modules with the ```set_face_data``` function. These data can stored in two ways: a) as a member variable in the module class; b) in a per-triangle data store. If the data is stored as a member variable, this is global to every call of the module and shared across the entire mesh. Remember, there is only 1 instance of a module class. To achieve per-triangle data storage, a module should create a sub-class that inherants from ```face_info```
 
+```cpp
+class test : public module_base
+{
+ struct data : public face_info
+    {
+       double my_data;
+    }
+};
+```
+
+This sub-class then should be initialized on each element using ```make_module_data```. As the class' member variable ```ID``` is passed to the call to create and access the data, other modules' data is technically available for access. *Don't do this*.
+
+```cpp
+auto d = elem->make_module_data<test::data>(ID);  #returns the instance just created
+d->my_data = 5;
+
+#access later
+auto d = elem->get_module_data<test::data>(ID); 
+```
