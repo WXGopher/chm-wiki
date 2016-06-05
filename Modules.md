@@ -1,4 +1,3 @@
-[[TOC]]
 # Overview
 Modules are the short-hand for a process representation. A principal design goal of a module is that it may depend either upon some set of variables produced by either other modules or on input forcing data. Modules define a set of variables which it provides globally to other modules. A module may not ever write any other variable global variable which it does declare. It should also not overwrite the variables of another module.
 
@@ -131,4 +130,11 @@ auto d = elem->get_module_data<test::data>(ID);
 ```
 
 ## interp_met modules
-Meterological interpolation functions are slightly different than the above. They should all declare an interpolant in a sub
+Meterological interpolation functions are slightly different than the above. They should all declare an interpolant in their per-face data store
+
+```cpp
+    struct data : public face_info
+    {
+        interpolation interp;
+    };
+```
