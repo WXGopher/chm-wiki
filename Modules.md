@@ -68,4 +68,30 @@ void example_module::init(mesh domain, boost::shared_ptr<global> global_param)
 ```
 Regardless of if the module is data or domain parallel, this function receives the entire mesh. ```init``` is called exactly once, after all other model setup has occurred, but prior to the main model execution loop. It is responsible for any initialization required by the model. An example of a complicated ```init``` is found in [Liston_wind](https://github.com/Chrismarsh/CHM/blob/master/src/modules/interp_met/Liston_wind.cpp) where the ```init``` function is used to pre-compute the wind curvature function.
 
-#
+## Variables
+
+### Dependencies
+In the constructor, a module declares itself to ```provides``` a set of variables and optionally ```depends``` upon other variables. Lastly, it may ```optionally``` depend upon a variable. If the the variable is not present, module dependency checks will still succeed, but the module *must* check prior to access to avoid a segfault. If a
+
+```
+# from another modules
+depends("ilwr");
+
+#optionally depend on another modules output
+optional("snow_albedo");
+
+#provide for another module.
+provides("dQ");
+```
+
+### Variable access
+Modules read from a variable stored on the mesh element via
+```
+auto albedo = elem->face_data("snow_albedo");
+```
+Modules may *only* write to variables they provide via
+```
+elem->set_face_data("dQ", 100.0);
+```
+
+
