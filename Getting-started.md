@@ -2,4 +2,4 @@ The Canadian Hydrological Model (CHM) is a modular model framework for developin
 
 + Model design
 + Terrain representation
-+ [Modules](Modules.md)
++ [Modules](Modules)
