@@ -172,7 +172,7 @@ where ```sample_points``` is a vector of (x,y,value) location tuples of each inp
 If the interpolant requires knowledge of the number of stations (e.g., TPSwT), and less stations are input (e.g., a NaN value is present -- see [timeseries](Timeseries), the the interpolant will on-the-fly reinitialize itself with the new size.
 
 #Inter-module dependencies
-Intermodule dependencies, and thus the order to run modules, is resolved prior to run time. The order of module execution is not dependent upon the order listed in the configuration file (see [Configuration](Configuration)). The interpolation modules always come prior to the process modules. 
+Intermodule dependencies, and thus the order to run modules, is resolved during to run time. The order of module execution is not dependent upon the order listed in the configuration file (see [Configuration](Configuration)). The interpolation modules always come prior to the process modules. 
 
 Inter-module variable dependencies is determined via the ```provides``` and ```depends``` declarations in the constructor. A module's dependencies are *every* other module that provides that output. This connectivity is represented internally with a graph. Thus, the linear sequential execution of the modules is determined via a topological sort. 
 
