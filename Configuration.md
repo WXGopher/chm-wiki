@@ -21,7 +21,7 @@ The config file is structured into key:value pairs separated by commas. Key name
 
 These are under ```option.X```:
 
-
+### point_mode
 Point mode selects that the model should be run in point mode, versus distributed mode. For point model to work, there must be an input and output station of the appropriate name. All other points will be ignored.
 ```json
 
