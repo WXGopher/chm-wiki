@@ -130,7 +130,7 @@ auto d = elem->get_module_data<test::data>(ID);
 ```
 
 ## interp_met modules
-Meterological interpolation functions are slightly different than the above. They should all declare an interpolant in their per-face data store. This must be on a per-element basis to ensure parallelism is possible.
+Meterological interpolation functions are slightly different than the above. They should all declare an interpolant in their per-face data store. This must be on a per-element basis to ensure parallelism is possible. If this is not done, large wait-locks must be used to prevent the internal consistency of the linear systems. The other benefit of this design is the interpolant is on a per-module basis, allowing each module to use a different interpolant.
 
 ```cpp
     struct data : public face_info
@@ -138,3 +138,35 @@ Meterological interpolation functions are slightly different than the above. The
         interpolation interp;
     };
 ```
+The ```interpolation``` object is a combo functor and factory. Its goal is to abstract the creation of different types of spatial interpolators. Currently Inverse-Distance-Weighting (IDW) and Thin Plate Spline with Tension (TPSwT) are implemented (although only TPSwT is usable). The interpolation method is choosable via the ```interp_alg``` enum. This is passed to the constructor
+```cpp
+interpolation::init(interp_alg ia, size_t size)
+```
+For performance reasons, it is best to initialize the interpolator prior to the module running. The size parameter should be used to denote the number of locations to be used in the interpolation. 
+
+The interpolation is performed by calling operator () on the interpolation instance
+```cpp
+operator()(std::vector< boost::tuple<double,double,double> >& sample_points, boost::tuple<double,double,double>& query_point)
+```
+where ```sample_points``` is a vector of (x,y,value) location tuples of each input data. ```query_point``` is then the (x,y,z) location we wish to interpolate. Frequently values cannot be interpolate directly and requires lowering to a common reference level. An example of what this looks like for constant temperature lapse rate is shown.
+
+```cpp
+    double lapse_rate = 0.0065;
+    //lower all the station values to sea level prior to the interpolation
+    std::vector< boost::tuple<double, double, double> > lowered_values;
+    for (auto& s : global_param->stations)
+    {
+        if( is_nan(s->get("t")))
+            continue;
+        double v = s->get("t") - lapse_rate * (0.0 - s->z());
+        lowered_values.push_back( boost::make_tuple(s->x(), s->y(), v ) );
+    }
+
+    auto query = boost::make_tuple(elem->get_x(), elem->get_y(), elem->get_z());
+    double value = elem->get_module_data<data>(ID)->interp(lowered_values, query);
+
+    //raise value back up to the face's elevation from sea level
+    value =  value + lapse_rate * (0.0 - elem->get_z());
+```
+
+If the interpolant requires knowledge of the number of stations (e.g., TPSwT), and less stations are input (e.g., a NaN value is present -- see (timeseries)[Timeseries]), the the interpolant will on-the-fly reinitialize itself with the new size. 
