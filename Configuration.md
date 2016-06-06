@@ -22,7 +22,7 @@ The config file is structured into key:value pairs separated by commas. Key name
 These are under ```option.X```:
 
 ### point_mode
-Point mode selects that the model should be run in point mode, versus distributed mode. For point model to work, there must be an input and output station of the appropriate name. All other points will be ignored.
+Point mode selects that the model should be run in point mode, versus distributed mode. For point model to work, there must be an input and output station of the appropriate name. All other points will be ignored. Requires adding ```point_mode``` to the module list. Lastly, no modules which are defined ```parallel:domain``` may be used when ```point_mode:true``` is enabled. 
 ```json
 
     "point_mode":
@@ -85,44 +85,38 @@ By default, the model runs for the entirety of the input timeseries. ```enddate`
 
 #modules
 
-Modules order as defined in this list has no bearing on the order they are run. Note modules are in a list ([ ]). Modules may be commented out to remove them from execution.
+Modules order as defined in this list has no bearing on the order they are run. Note modules are in a list ([ ]). Modules may be commented out to remove them from execution. Module names are case sensitive. The ```point_mode``` module is required to enable point mode, in addition to being enable in ```option.point_mode```.
 ```json
   "modules": //important these are [ ]
   [
-    //met interp
      "Liston_wind",
-
-//    "iswr_from_obs",
     "Burridge_iswr",
-//    "slope_iswr",
+    "slope_iswr",
      "Liston_monthly_llra_ta",
      "kunkel_rh",
      "Thornton_p",
-//    "point_mode",
-
-    //met process
-    "Walcek_cloud",
+     "Walcek_cloud",
      "Sicart_ilwr",
-    "Harder_precip_phase",
-//     "threshold_p_phase",
-
-    //processes
+     "Harder_precip_phase",
     "snobal",
     "Gray_inf",
-//    "snowpack"
      "Richard_albedo"
 
   ]
 ```
+# remove_depency
+Under some edge cases, a cyclic dependency is created when a module depends on A's output, and A depends on B's output. There is no way to automatically resolve this. It requires the modeller to manually break the cycle and force one module to run ahead of another (essentially time-lagged). 
 
-  // In case of a cycle depencency, remove dependencies between two modules. 
-  // If module A depends on B (A->B), then to remove the depency specify it as
-  // "A":"B" 
-  // will remove the dependency on B from A.
+An example of this occuring is that the albedo models require knowledge of SWE, provided by the snowmodel. However, the snowmodel requires albedo to run. Therefore, the modeller may define that the albedo routine is run first, then the snowpack model.
+
+In detail: if module A depends on B (A->B), then to remove the decency of B from A, specify it as ```"A":"B" ```
+```json
   "remove_depency":
   {
     "Richard_albedo":"snobal"
-  },
+  }
+```
+
   "config":
   {
 
