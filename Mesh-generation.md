@@ -1,4 +1,4 @@
-Mesh generation is handled by the program located at ```tools/mesher/main.py```. Mesher depends heavily upon GDAL and the GDAL python bindings.
+Mesh generation is handled by the program located at ```tools/mesher/main.py```. Mesher depends heavily upon GDAL to handle the geospatial data and the GDAL python bindings. Mesher's input rasters can be in any 1-band raster than GDAL can open. The triangulation is performed using [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
 
 Configuration parameters are set in a second .py file and passed as an argument to ```main.py``` on the command line. For example:
 ```bash
@@ -35,3 +35,7 @@ parameter_files={ }
 simplify     =   False
 simplify_tol =   5   
 ```
+
+Mesher creates a directory with the same name as the input dem. This directory has the reprojected files (```*_projected```), Triangle's intermediary files (.node, .elem, .neigh), and the triangulation shape file (```*_USM.shp```).
+
+
