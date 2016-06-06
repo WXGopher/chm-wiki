@@ -13,6 +13,7 @@ Options:
 
 # config-file
 ```./CHM --config-file CHM_test.json```
+
 ```./CHM -f CHM_test.json```
 
 #config
