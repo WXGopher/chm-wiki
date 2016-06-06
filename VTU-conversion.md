@@ -8,9 +8,13 @@ For vtu variables that are parameters (and therefore constant with time), only 1
 
 ```base``` is the base vtu name, and should correspond to the ```output.mesh.base_name``` option in the main configuration file.
 
+```pixel_size`` is the size of the raster cells in m^2.
+
+```EPSG``` should be specified to define the coordinate system of the geotiff.
+
 ```python
     base = "granger"
-    input_path = 'output/output/'
+    input_path = 'output/'
     EPSG=26908 
     variables = ['total_inf','total_excess']  #set to None to dump all variables
     parameters = ['Aspect'] # paramters are one offs we want to extract from the vtu files
