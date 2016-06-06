@@ -176,7 +176,7 @@ Intermodule dependencies, and thus the order to run modules, is resolved during 
 
 Inter-module variable dependencies is determined via the ```provides``` and ```depends``` declarations in the constructor. A module's dependencies are *every* other module that provides that output. This connectivity is represented internally with a graph. Thus, the linear sequential execution of the modules is determined via a topological sort. 
 
-If dot and gpvr are installed, ```modules.pdf``` is generated which contains the graph of the inter-module dependencies. 
+If [Graphiv](http://www.graphviz.org/) is installed, ```modules.pdf``` is generated which contains the graph of the inter-module dependencies. 
 ![](https://github.com/Chrismarsh/CHM/blob/master/modules_readme.png)
 
 Once the linear order is determined, the modules are chunked into execution groups depending on their ```parallel::``` flag. For example, consider the following set of modules, sorted via the topological sort:
