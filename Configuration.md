@@ -1,4 +1,4 @@
-Configuration for CHM is via a structure json file.
+Configuration for CHM is via a structured json file.
 
 Below, all options are detailed, however please note some configuration options may be incompatible with other options.
 
@@ -204,7 +204,12 @@ or as a key:value set. In all cases, the parameter name is how it will be refere
       }
    }
 ```
+# output
+Output may be either to a timeseries for a specific location on the mesh or it may be the entirety of the mesh.
 
+### timeseries
+The name of the timeseries key is used to uniquely identify this output. A x,y coordinate (given as ```easting``` and ```northing```) is provided. The triangle that contains this point is then selected for output. An error is raised if no triangle contains the point. ```file``` denotes the output file name. The output is in csv format. ```timeseries``` is a legacy option and should be set to "timeseries" and forgotten.
+```json
   "output":
   {
     "northface":
@@ -213,28 +218,28 @@ or as a key:value set. In all cases, the parameter name is how it will be refere
       "northing": 6712108.525,
       "file": "granger_northface.txt",
       "type": "timeseries"
-    },
-    "southface":
-    {
-      "easting": 489881.078,
-      "northing": 6712491.738,
-      "file": "granger_southface.txt",
-      "type": "timeseries"
-    },
-    "middle":
-    {
-      "easting": 489864.752,
-      "northing": 6712277.792,
-      "file": "granger_middle.txt",
-      "type": "timeseries"
-    },
+    }
+ }
+```
+### mesh
+Alternatively, the entire mesh is written to Paraview's vtu format for visulatization in Paraview and for analysis. ```base_name``` is the base file name to be used. In this case the files will be named sequentially ```granger.0001.vtu```, ```granger.0002.vtu```, &c in the output directory. 
+
+If mesh output is enabled, the default behaviour to is write every variable at each timestep. Only variables defined in the ```provides``` call is eligible for output. 
+
+#### variables
+```"variables":[ ] ``` can be set to write a subset of variables. This is useful for reducing the size of output files.
+
+#### frequency
+Frequency can be set to write ever N timesteps. The pvd file will properly display the time of each output.
+  
+```json
      "mesh":
      {
        "base_name":"output/granger"
-//       "variables":["swe","t","rh"],
-//       "frequency":1 //every N timesteps
+       "variables":["swe","t","rh"],
+       "frequency":1 
      }
-  },
+```
   "global":
   {
     "latitude":60.52163,
