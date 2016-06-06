@@ -169,4 +169,37 @@ where ```sample_points``` is a vector of (x,y,value) location tuples of each inp
     value =  value + lapse_rate * (0.0 - elem->get_z());
 ```
 
-If the interpolant requires knowledge of the number of stations (e.g., TPSwT), and less stations are input (e.g., a NaN value is present -- see [timeseries](Timeseries), the the interpolant will on-the-fly reinitialize itself with the new size. 
+If the interpolant requires knowledge of the number of stations (e.g., TPSwT), and less stations are input (e.g., a NaN value is present -- see [timeseries](Timeseries), the the interpolant will on-the-fly reinitialize itself with the new size.
+
+#Inter-module dependencies
+Intermodule dependencies, and thus the order to run modules, is resolved prior to run time. The order of module execution is not dependent upon the order listed in the configuration file (see [Configuration](Configuration)). The interpolation modules always come prior to the process modules. 
+
+Inter-module variable dependencies is determined via the ```provides``` and ```depends``` declarations in the constructor. A module's dependencies are *every* other module that provides that output. This connectivity is represented internally with a graph. Thus, the linear sequential execution of the modules is determined via a topological sort. 
+
+If dot and gpvr are installed, ```modules.pdf``` is generated which contains the graph of the inter-module dependencies. 
+![](https://github.com/Chrismarsh/CHM/blob/master/modules_readme.png)
+
+Once the linear order is determined, the modules are chunked into execution groups depending on their ```parallel::``` flag. For example, consider the following set of modules, sorted via the topological sort:
+```
+mod_A (parallel::data)
+mod_B (parallel::data)
+mod_C (parallel::data)
+mod_D (parallel::domain)
+mod_E (parallel::data)
+```
+These are then chunked into 3 sub groups:
+```
+mod_A (parallel::data)
+mod_B (parallel::data)
+mod_C (parallel::data)
+```
+```
+mod_D (parallel::domain)
+```
+```
+mod_E (parallel::data)
+```
+
+In the first data parallel subgroup, ```mod_A```, ```mod_B```, ```mod_C``` are executed sequentially on each triangle, but each triangle is done in parallel. Then subgroup 2 is run over the entire domain. Then subgroup 3 runs in parallel. 
+
+This purpose of this chunking is to attempt to schedule as many modules as possible, to avoid the increase in overhead of running M modules over N mesh points.
