@@ -274,7 +274,7 @@ Easting and Northing of the input station
 Elevation is given in meters. It does *not* need to be equal to the elevation of the triangle upon which it lies if the station is located in the simulation domain.
 
 ### filter
-If a [filter](filter) is defined, it must be defined on the forcing file and operate upon a variable that exists in the forcing data.
+If a [filter](filters) is defined, it must be defined on the forcing file and operate upon a variable that exists in the forcing data.
 
 ```json
       "buckbrush":
