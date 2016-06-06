@@ -169,4 +169,4 @@ where ```sample_points``` is a vector of (x,y,value) location tuples of each inp
     value =  value + lapse_rate * (0.0 - elem->get_z());
 ```
 
-If the interpolant requires knowledge of the number of stations (e.g., TPSwT), and less stations are input (e.g., a NaN value is present -- see (timeseries)[Timeseries]), the the interpolant will on-the-fly reinitialize itself with the new size. 
+If the interpolant requires knowledge of the number of stations (e.g., TPSwT), and less stations are input (e.g., a NaN value is present -- see [timeseries](Timeseries), the the interpolant will on-the-fly reinitialize itself with the new size. 
