@@ -158,8 +158,10 @@ cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 The meshes section has two sections:
 - mesh
 - parameters
-
-```mesh``` is the file path  to the main .mesh file that contains the DEM information, as well as optionally, parameters. ```parameters``` is a set of key:value pairs to other mesh files that contain extra parameters to be used.
+###mesh
+```mesh``` is the file path  to the main .mesh file that contains the DEM information, as well as optionally, parameters. 
+###parameters
+```parameters``` is a set of key:value pairs to other mesh files that contain extra parameters to be used.
 ```json
   "meshes":
   {
@@ -235,52 +237,63 @@ Frequency can be set to write ever N timesteps. The pvd file will properly displ
 ```json
      "mesh":
      {
-       "base_name":"output/granger"
+       "base_name":"output/granger",
        "variables":["swe","t","rh"],
        "frequency":1 
      }
 ```
-  "global":
-  {
-    "latitude":60.52163,
-    "longitude":-135.197151,
+# global
+Global defines a set of globally applicable parameters. The key name is a unique identifier. If ```point_mode``` is being used, then the station used in ```point_mode``` must exist in this list.
+
+## latitude, longitude
+Awkwardly, the lat/long of the basin is given despite the underlying mesh being defined in UTM. ```longitude``` is negative westward.
+```json
+"latitude":60.52163,
+"longitude":-135.197151
+```
+##UTC_offset
+The utc offset is used to determine solar parameters. Positive west.
+```json
     "UTC_offset":8
-  },
-  "forcing":
-  {
+```
+##forcing 
+Forcing data are defined as an input [timeseries](timeseries) in tab delineated format with ISO datetime. Input forcing stations do not need to be located within the simulation domain. Therefore they can act as 'virtual stations' so-as to use reanalysis data, or met stations located outside of the basin.
+
+### file 
+```file``` is a relative or absolute path
+```json
+"file":"bb_1999-2002"```
+
+### easting, northing
+Easting and Northing of the input station
+```json
+         "easting": 489216.601,
+         "northing": 6709533.168
+```
+### elevation
+Elevation is given in meters. It does *not* need to be equal to the elevation of the triangle upon which it lies if the station is located in the simulation domain.
+
+### filter
+If a [filter](filter) is defined, it must be defined on the forcing file and operate upon a variable that exists in the forcing data.
+
+```json
       "buckbrush":
        {
          "file":"bb_1999-2002", // hm_oct2010 hm_oct2_4_2010 hm_sep_15_2006
          "easting": 489216.601,
          "northing": 6709533.168,
-         "elevation": 1305
-       },
-     "alpine":
-     {
-       "file":"alp_1999-2002",  //fr_sep_15_2006
-       "easting": 489879.341,
-       "northing":  6714611.183,
-       "elevation": 1559
-      // "filter":
-      // {
-      //   "macdonald_undercatch":
-      //   {
-      //     "variable":"p"
-      //   }
-      },
-      "forest":
-      {
-        "file":"for_1999-2002",  //fr_sep_15_2006
-        "easting": 502601.621,
-        "northing":   6717779.327 ,
-        "elevation": 739
-        // "filter":
-        // {
-        //   "macdonald_undercatch":
-        //   {
-        //     "variable":"p"
-        //   }
-      }
+         "elevation": 1305,
+         "filter":
+         {
+           "macdonald_undercatch":
+           {
+             "variable":"p"
+           }
+        }
+     }
+```
+
+
 
     
   }  
