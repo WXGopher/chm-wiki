@@ -8,7 +8,7 @@ For vtu variables that are parameters (and therefore constant with time), only 1
 
 ```base``` is the base vtu name, and should correspond to the ```output.mesh.base_name``` option in the main configuration file.
 
-```pixel_size`` is the size of the raster cells in m^2.
+```pixel_size``` is the size of the raster cells in m^2.
 
 ```EPSG``` should be specified to define the coordinate system of the geotiff.
 
