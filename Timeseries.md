@@ -12,4 +12,4 @@ obs = pd.read_csv("uc_2005_2014.txt",sep="\t",parse_dates=[0])
 obs.set_index('datetime',inplace=True)
 ```
 
-Various conversion scripts for other models' input/output are located in ```tools/```
+Various conversion scripts for other models' input/output are located in ```tools```
