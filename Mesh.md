@@ -30,3 +30,6 @@ triangles = [
 ]
 ```
 Above, this represents a single triangle.
+
+#Input
+The input mesh is produced using the [mesher](mesher) tool. Please see the mesher documentation for more details. 
