@@ -1,4 +1,4 @@
-The conversion of the vtu format to arbitrary GIS formats is provided by ```vtu2geo`` located in ```tools/vtu2geo/main.py```. 
+The conversion of the vtu format to arbitrary GIS formats is provided by ```vtu2geo``` located in ```tools/vtu2geo/main.py```. 
 
 This tool produces an internal shp file that corresponds to the triangulation and uses GDAL to rasterize this to an output geotiff.  
 
