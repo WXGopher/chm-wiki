@@ -279,7 +279,7 @@ If a [filter](filter) is defined, it must be defined on the forcing file and ope
 ```json
       "buckbrush":
        {
-         "file":"bb_1999-2002", // hm_oct2010 hm_oct2_4_2010 hm_sep_15_2006
+         "file":"bb_1999-2002", 
          "easting": 489216.601,
          "northing": 6709533.168,
          "elevation": 1305,
@@ -292,11 +292,4 @@ If a [filter](filter) is defined, it must be defined on the forcing file and ope
         }
      }
 ```
-
-
-
-    
-  }  
-
-}
 
