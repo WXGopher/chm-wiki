@@ -171,17 +171,28 @@ The meshes section has two sections:
 
   }
 ```
-
+Mesh parameters are not guaranteed to cover the entire extent of the of the DEM. A module may test for a parameter on a triangle as follows:
+```cpp
+ if (face->has_parameter("swe2"))
+        {
+            if( !is_nan(face->get_parameter("swe2")))
+            {
+                sbal->z_s = face->get_parameter("swe2") / sbal->rho;
+            }
+        }
+```
+# parameters
+Often, the parameters in the mesh may requires information. For example, landcover might be a numeric class value. The parameters can thus be arbitrary extra data. These can be thought of the meta-data for the on-mesh parameters. These parameters may be either located in another file:
+```json 
   "parameters":
   {
-    "soil":"parameters/wolf_soil_param.json",
-
+    "soil":"parameters/wolf_soil_param.json"
+  }
+```
+or as a key:value set. In all cases, the parameter name is how it will be referenced in the module that is looking for it. 
+```json
     "landcover":
     {
-      "12":
-      {
-        "desc":"shadow"
-      },
       "20":
       {
         "desc":"lake",
@@ -190,67 +201,10 @@ The meshes section has two sections:
       "31":
       {
         "desc":"snow ice"
-      },
-      "32":
-      {
-        "desc":"rock"
-      },
-
-      "33":
-      {
-        "desc":"exposed"
-      },
-      "51":
-      {
-        "desc":"shrub tall"
-      },
-      "52":
-      {
-        "desc":"shrub low"
-      },
-      "81":
-      {
-        "desc":"wetland-treed"
-      },
-      "82":
-      {
-        "desc":"wetland-shrub"
-      },
-      "83":
-      {
-        "desc":"wetland-herb"
-      },
-      "100":
-      {
-        "desc":"herb"
-      },
-      "211":
-      {
-        "desc":"coniferous dense"
-      },
-      "212":
-      {
-        "desc":"coniferous open"
-      },
-      "213":
-      {
-        "desc":"Coniferous Sparse"
-      },
-      "221":
-      {
-        "desc":"Broadleaf Dense"
-      },
-      "222":
-      {
-        "desc":"Broadleaf Open"
-      },
-      "232":
-      {
-        "desc":"Mixedwood Open"
       }
+   }
+```
 
-    }
-  },
   "output":
   {
     "northface":
