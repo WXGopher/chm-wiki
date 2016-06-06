@@ -5,6 +5,7 @@ The internal topographic representation is via an unstructured triangular mesh (
 
 Internally, the mesh is held in a CGAL structure that provides various ease-of-use structures. The relevant files are in ```mesh/```. 
 
+#Iteration
 Because the triangle iterators provided by CGAL have a non-deterministic order, as well as being incompatible with OpenMP, the way to access the i-th triangle is via
 ```cpp
 #pragma omp parallel for
@@ -14,3 +15,18 @@ Because the triangle iterators provided by CGAL have a non-deterministic order, 
      ...
     }
 ```
+
+#Internal data structure
+The mesh is represented as a vector of (x,y,z) points, connected via edges which are indexes into the vertex array. Thus, two vectors are held in memory as (pseudo code)
+```python
+vertexes = [ 
+  [x1,y1,z1],
+  [x2,y2,z2],
+  [x3,y3,z3]
+]
+
+triangles = [
+  [1,2,3]
+]
+```
+Above, this represents a single triangle.
