@@ -85,13 +85,13 @@ By default, the model runs for the entirety of the input timeseries. ```enddate`
 
 #modules
 
-```
-
+Modules order as defined in this list has no bearing on the order they are run. Note modules are in a list ([ ]). Modules may be commented out to remove them from execution.
+```json
   "modules": //important these are [ ]
   [
     //met interp
      "Liston_wind",
-    "Marsh_shading_iswr",
+
 //    "iswr_from_obs",
     "Burridge_iswr",
 //    "slope_iswr",
@@ -112,7 +112,8 @@ By default, the model runs for the entirety of the input timeseries. ```enddate`
 //    "snowpack"
      "Richard_albedo"
 
-  ],
+  ]
+```
 
   // In case of a cycle depencency, remove dependencies between two modules. 
   // If module A depends on B (A->B), then to remove the depency specify it as
