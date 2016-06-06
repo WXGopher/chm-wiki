@@ -1,5 +1,7 @@
 Filters are a mechanism whereby the input forcing data can be modified in some way prior to the model run. For example, this could be use to apply a gauge undercatch to precip. Filters modify the data of a station _in situ_.
 
+Note! Filters run in the order defined in the configuration file.
+
 # Implementation
 
 Filters inherent from the base ```filter_base``` class. 
