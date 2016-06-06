@@ -31,18 +31,59 @@ Point mode selects that the model should be run in point mode, versus distribute
       "forcing":"UpperClearing"
     },
 ```
+### notification_script
+This specifies the script to call upon model execution. This is useful for sending a notification to a computer or phone upon the completion of a long model run.
+```json
+    "notification_script":"./finished.sh"
+```
+And example of what ```finished.sh``` might do  is below, which triggers a notifcation to Pushbullet thus showing up on all computers and phones that the account is active on:
+```bash
+#!/bin/bash
 
-    "notification_script":"./finished.sh",
-    "per_triangle_timeseries":"false",
-    "ui":true,
-    "debug_level":"debug",
+curl -s -u <token here>: https://api.pushbullet.com/v2/pushes -d type=note -d title="Finished model run" >/dev/null
+```
 
-    "prj_name":"Granger creek",
+### per_triangle_timeseries
+Keeping a continuous timeseries on all triangles is memory intensive and generally shouldn't be used. At the moment this is a legacy option and should be kept 'false' (also it's default behaviour).
+```json
+    "per_triangle_timeseries":"false"
+```
 
-    "startdate":"20010501T000000",
-    "enddate":"20010502T000000"
+### ui
+There is a ncurses ui. However it is currently a little buggy and often requires a ```stty sane;clear``` call at the end. 
+```
+    "ui":true
+```
 
-  }
+### debug_level
+This controls the verbosity of the output. Options are:
+- verbose [ all messages ]
+- debug   [ most messages useful for debugging ]
+- warning [ only warnings]
+- error   [ only errors which terminate model execution ]
+Currently most internal messages are debug level. 
+```json
+    "debug_level":"debug"
+```
+
+### prj_name
+Project name for reference in the ncurses ui
+```json
+    "prj_name":"Granger creek"
+```
+
+### startdate
+By default, the model runs for the entirety of the input timeseries. ```startdate``` allows for starting at a time *after* the start of the timeseries
+```json
+    "startdate":"20010501T000000"
+```
+### enddate
+By default, the model runs for the entirety of the input timeseries. ```enddate``` allows for ending at a time *before* the end of the timeseries
+```json
+       "enddate":"20010502T000000"
+```
+
+#modules
 
 ```
 
