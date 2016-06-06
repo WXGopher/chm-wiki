@@ -117,36 +117,60 @@ In detail: if module A depends on B (A->B), then to remove the decency of B from
   }
 ```
 
-  "config":
-  {
-
-    "slope_iswr":
+#config
+Each module, upon creation is provided a configuration instance (see [modules](modules)). These configuration data are set by creating a key that exactly matches the module name. For example
+```json
+"slope_iswr":
     {
       "no_slope":true
-    },
-    "snowpack":"snowpack.json",
-    "Richard_albedo":
-    {
-      "min_swe_refresh":10,
-      "init_albedo_snow":0.8
-    },
-    "Liston_wind":
-    {
-      "serialize":false,
-      "serialize_output":"meshes/granger30_liston_curvature.mesh"
     }
-  },
+```
+would be accessed by the module as 
+```cpp 
+cfg.get<bool>("no_slope")```
+
+If the configuration is sufficiently large or cumbersome, it may be best to have it in a separate file. This can be specified as
+```json
+"snowpack":"snowpack.json"
+```
+where ```snowpack.json``` looks like:
+
+```json
+{
+	"Snowpack":
+	{
+		"HEIGHT_OF_WIND_VALUE" : 2,
+		"ATMOSPHERIC_STABILITY" : "MONIN_OBUKHOV"
+	},
+	"SnowpackAdvanced":
+	{
+		"MAX_NUMBER_MEAS_TEMPERATURES":1
+        }
+}
+```
+In the snowpack module, ```ATMOSPHERIC_STABILITY``` would be accessed as
+```cpp
+cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
+```
+
+
+#meshes
+The meshes section has two sections:
+- mesh
+- parameters
+
+```mesh``` is the file path  to the main .mesh file that contains the DEM information, as well as optionally, parameters. ```parameters``` is a set of key:value pairs to other mesh files that contain extra parameters to be used.
+```json
   "meshes":
   {
     "mesh":"meshes/granger30.mesh",
-//
-    //map internal variables/parameters to the .mesh file's parameter section.
     "parameters":
     {
       "file":"meshes/granger30_liston_curvature.mesh"
     }
 
-  },
+  }
+```
 
   "parameters":
   {
