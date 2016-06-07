@@ -261,11 +261,14 @@ Forcing data are defined as an input [timeseries](timeseries) in tab delineated 
 
 ### file 
 ```file``` is a relative or absolute path
+
 ```json
-"file":"bb_1999-2002"```
+"file":"bb_1999-2002"
+```
 
 ### easting, northing
 Easting and Northing of the input station
+
 ```json
          "easting": 489216.601,
          "northing": 6709533.168
