@@ -107,7 +107,7 @@ If ```optional``` has been used, a module can test for existance via
 ```
 
 ## Data storage
-Frequently, the module must maintain a set of data that is separate from the variables that are exposed to other modules with the ```set_face_data``` function. These data can stored in two ways: a) as a member variable in the module class; b) in a per-triangle data store. If the data is stored as a member variable, this is global to every call of the module and shared across the entire mesh. Remember, there is only 1 instance of a module class. To achieve per-triangle data storage, a module should create a sub-class that inherants from ```face_info```
+Frequently, the module must maintain a set of data that is separate from the variables that are exposed to other modules with the ```set_face_data``` function. These data can be stored in two ways: a) as a member variable in the module class; b) in a per-triangle data store. If the data is stored as a member variable, this is global to every call of the module and shared across the entire mesh. Remember, there is only 1 instance of a module class. To achieve per-triangle data storage, a module should create a sub-class that inherants from ```face_info```
 
 ```cpp
 class test : public module_base
