@@ -1,3 +1,21 @@
+#Dependencies
+* Matlab (optional)
+* Armadillo
+* boost
+* GNU GSL
+* Intel TBB
+* CGAL
+* Paraview (if building the filter) otherwise VTK
+* C++11 compliant compiler
+
+#To build:
+    cmake .
+    make
+
+#To test:
+    cmake .
+    make check
+    make test
 
 #Trouble shooting
 ##Matlab
