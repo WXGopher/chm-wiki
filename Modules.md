@@ -203,3 +203,10 @@ mod_E (parallel::data)
 In the first data parallel subgroup, ```mod_A```, ```mod_B```, ```mod_C``` are executed sequentially on each triangle, but each triangle is done in parallel. Then subgroup 2 is run over the entire domain. Then subgroup 3 runs in parallel. 
 
 This purpose of this chunking is to attempt to schedule as many modules as possible, to avoid the increase in overhead of running M modules over N mesh points.
+
+
+# Registration with module factory
+Once the module has been written, it needs to be registered with the module factory. 
+
+1. Add the modules .hpp file as an include to ```module_factory.hpp```
+2. Add to the if-chain in ```module_factory.cpp``` to create a module based off a string parameter.
