@@ -38,3 +38,7 @@ Removes a module. Removals are processed after any --config parameters are parse
 
 #add-module
 Adds a module to the list.
+
+```
+-m snobal
+```
