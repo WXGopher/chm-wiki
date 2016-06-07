@@ -2,3 +2,5 @@ The Canadian Hydrological Model (CHM) is a novel modular unstructured mesh based
 
 
 This wiki will supplement the in-code documentation (located in ```doc/```, generated with Doxygen). Both end-user and developer documentation is included.
+
+Please use the links on the right to get started
