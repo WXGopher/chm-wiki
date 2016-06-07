@@ -210,3 +210,8 @@ Once the module has been written, it needs to be registered with the module fact
 
 1. Add the modules .hpp file as an include to ```module_factory.hpp```
 2. Add to the if-chain in ```module_factory.cpp``` to create a module based off a string parameter.
+
+```cpp
+else if (ID == "Gray_inf")
+        mod = new Gray_inf(config);
+```
