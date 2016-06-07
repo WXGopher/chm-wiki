@@ -158,9 +158,9 @@ cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 The meshes section has two sections:
 - mesh
 - parameters
-###mesh
+
 ```mesh``` is the file path  to the main .mesh file that contains the DEM information, as well as optionally, parameters. 
-###parameters
+
 ```parameters``` is a set of key:value pairs to other mesh files that contain extra parameters to be used.
 ```json
   "meshes":
