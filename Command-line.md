@@ -40,5 +40,5 @@ Removes a module. Removals are processed after any --config parameters are parse
 Adds a module to the list.
 
 ```
--m snobal
+-m snobal -m Marsh_shading_iswr
 ```
