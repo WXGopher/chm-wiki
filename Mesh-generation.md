@@ -11,6 +11,14 @@ The extent of ```dem_filename``` is used to define the simulation extent. Input 
 
 ```max_area``` Is a constraint on the maximum size (m^2) of a triangle.
 
+```max_tolerance``` The maximum difference (vertical distance) between the triangle and the underlying raster
+
+```min_area``` A minimum area (m^2) past which mesher should not refine a triangle. A good setting is the square area of a DEM cell.
+
+```errormetric``` Assigned an integer value that determines the error metric to use.
+1 = Mean elevation difference 
+2 = RMSE tolerance 
+
 ```parameter_files``` is a dictionary  that lists additional parameters. Because a triangle may cover more than one raster cell, the ```method``` variable specifies either 'mode' or 'mean'. This controls how the >1 cells are merged and assigned to a triangle. 'Mode' sets the triangle to be the value that is most common out of all cells.
 
 ```python
@@ -30,8 +38,10 @@ Complex basin shapes might result in the creation of many triangles along the co
 EPSG=26911
 dem_filename = 'bow_srtm1.tif'
 max_area=1000000
+max_tolerance=50
+min_area = 30**2
 parameter_files={ }
-
+errormetric = 1 
 simplify     =   False
 simplify_tol =   5   
 ```
