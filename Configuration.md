@@ -2,6 +2,8 @@ Configuration for CHM is via a structured json file.
 
 Below, all options are detailed, however please note some configuration options may be incompatible with other options.
 
+**An important note!** Do not prefix a number with zero (0). This is the octal prefix and it will cause the JSON parser to choke on lines that otherwise look fine.
+
 The config file is structured into key:value pairs separated by commas. Key names are enclosed in quotes (" ").
 ```
 {
