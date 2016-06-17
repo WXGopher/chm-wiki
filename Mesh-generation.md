@@ -13,7 +13,7 @@ The extent of ```dem_filename``` is used to define the simulation extent. Input 
 
 ```max_tolerance``` The maximum difference (vertical distance) between the triangle and the underlying raster
 
-```min_area``` A minimum area (m^2) past which mesher should not refine a triangle. A good setting is the square area of a DEM cell.
+```min_area``` A minimum area (m^2) past which mesher should not refine a triangle further. A good setting is the square area of a DEM cell. This does not mean a triangle won't be smaller than this; rather, if a triangle is below this threshold it will automatically be accepted as valid. This will override the tolerance setting. For example, if the threshold is 3m^, and a 2m^ triangle is checked for validity, it will automatically be accepted, without checking the tolerance. A triangle may end up smaller than this threshold due to other splitting that occurs in order to guarantee triangle quality.
 
 ```errormetric``` Assigned an integer value that determines the error metric to use.
 1 = Mean elevation difference 
