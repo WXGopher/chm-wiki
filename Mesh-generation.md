@@ -7,7 +7,7 @@ python main.py example_config.py
 
 Experimental support is now enabled for lat/long input files. Due to the diversity of input data, all input parameters and DEM files to mesher are set to unified datum, defined by the EPSG number of `dem_filename`. Further, all files' nodata value is set to -9999. 
 
-The coordinate system of `dem_filename` is used for all other files.
+The coordinate system of `dem_filename` is used for all other files. However, the user may specify `EPSG` in the configuration file, which will override the coordinate system of `dem_filename`.
 
 If a lat/long (i.e., geographic) dataset is found, a few things happen:
 - Shortcuts in the meshing step cannot be taken, so meshing will likely take a bit longer
