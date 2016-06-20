@@ -5,7 +5,15 @@ Configuration parameters are set in a second .py file and passed as an argument 
 python main.py example_config.py
 ```
 
-CHM assumes that all meshes are in UTM meters. Due to the diversity of input data, all input parameters and DEM files to mesher are projected to a unified UTM projection, defined by the EPSG number. Further, all files' nodata value is set to -9999. 
+Experimental support is now enabled for lat/long input files. Due to the diversity of input data, all input parameters and DEM files to mesher are set to unified datum, defined by the EPSG number. Further, all files' nodata value is set to -9999. 
+
+The coordinate system of `dem_filename` is used for all other files.
+
+If a lat/long (i.e., geographic) dataset is found, a few things happen:
+- Shortcuts in the meshing step cannot be taken, so meshing will likely take a bit longer
+- CHM will scale all lat/long values by 100000 for the vtu output as Paraview seems to struggle rendering points so close to together.
+- This scaling occurs during mesh read -- will be to be fixed later to be only in the vtu output.
+- When triangles are checked during meshing to get the parameter and initial conditions, the triangle is temporarily projected to an equal-area conic so-as to determine the area in m^2.
 
 The extent of ```dem_filename``` is used to define the simulation extent. Input parameters are constrained to this extent. However, parameters need not cover the entire extent. Therefore modules *must* check that paramters are not NaN.
 
@@ -21,6 +29,9 @@ The extent of ```dem_filename``` is used to define the simulation extent. Input 
 
 ```parameter_files``` is a dictionary  that lists additional parameters. Because a triangle may cover more than one raster cell, the ```method``` variable specifies either 'mode' or 'mean'. This controls how the >1 cells are merged and assigned to a triangle. 'Mode' sets the triangle to be the value that is most common out of all cells.
 
+```initial_conditions``` is a dictionary  that lists additional parameters. Because a triangle may cover more than one raster cell, the ```method``` variable specifies either 'mode' or 'mean'. This controls how the >1 cells are merged and assigned to a triangle. 'Mode' sets the triangle to be the value that is most common out of all cells.
+
+
 ```python
     parameter_files = {
         'landcover': { 'file' : 'eosd.tif',
@@ -29,8 +40,12 @@ The extent of ```dem_filename``` is used to define the simulation extent. Input 
                'method':'mean'
                }
     }
+initial_conditions={
+     'sm' : {'file': 'granger_sm_2000.tif', 'method': 'mean'},
+    'swe' : {'file': 'granger_swe_2001.tif', 'method':'mean'}
+}
 ```
-Complex basin shapes might result in the creation of many triangles along the complex edges. Thus ```simplify=True``` and ```simplify_tol``` can be used to simplify the basin outline. ```simplify_tol``` is the simplification tolerance specified in meters. Becareful as too high a tolerance will cause many lines to be outside of the bounds of the raster.
+Complex basin shapes might result in the creation of many triangles along the complex edges. Thus ```simplify=True``` and ```simplify_tol``` can be used to simplify the basin outline. ```simplify_tol``` is the simplification tolerance specified in meters. Be careful as too high a tolerance will cause many lines to be outside of the bounds of the raster.
 
 
 ```python
@@ -41,6 +56,7 @@ max_area=1000000
 max_tolerance=50
 min_area = 30**2
 parameter_files={ }
+initial_conditions={ } 
 errormetric = 1 
 simplify     =   False
 simplify_tol =   5   
