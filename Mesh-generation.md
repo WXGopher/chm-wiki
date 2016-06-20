@@ -5,7 +5,7 @@ Configuration parameters are set in a second .py file and passed as an argument 
 python main.py example_config.py
 ```
 
-Experimental support is now enabled for lat/long input files. Due to the diversity of input data, all input parameters and DEM files to mesher are set to unified datum, defined by the EPSG number. Further, all files' nodata value is set to -9999. 
+Experimental support is now enabled for lat/long input files. Due to the diversity of input data, all input parameters and DEM files to mesher are set to unified datum, defined by the EPSG number of `dem_filename`. Further, all files' nodata value is set to -9999. 
 
 The coordinate system of `dem_filename` is used for all other files.
 
@@ -50,7 +50,6 @@ Complex basin shapes might result in the creation of many triangles along the co
 
 ```python
 # Configuration file for Mesher
-EPSG=26911
 dem_filename = 'bow_srtm1.tif'
 max_area=1000000
 max_tolerance=50
