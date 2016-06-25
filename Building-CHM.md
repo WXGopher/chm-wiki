@@ -4,6 +4,7 @@
 * boost
 * GNU GSL
 * Intel TBB
+* GDAL (>2.0)
 * CGAL
 * Paraview (if building the filter) otherwise VTK
 * C++11 compliant compiler
