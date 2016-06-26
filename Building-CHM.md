@@ -11,7 +11,7 @@
 
 # Building on Ubuntu 16.04:
 
-* GDAL
+GDAL
 sudo wget http://download.osgeo.org/gdal/2.1.0/gdal-2.1.0.tar.gz
 sudo tar -xzvf gdal-2.1.0.tar.gz
 cd gdal-2.1.0
@@ -19,36 +19,36 @@ cd gdal-2.1.0
 sudo make
 sudo make install
  
-* QT5
+QT5
 sudo apt-get install libqt5svg5*
 sudo apt-get install qt5-default
 
-* CGAL
+CGAL
 sudo apt-get install libcgal-dev
 sudo apt-get install libcgal-demo
 
-* Armadillo
+Armadillo
 sudo apt-get install libarmadillo-dev
 
-* Boost
+Boost
 sudo apt-get install libboost-all-dev
 
-* TBB
+TBB
 sudo apt-get install libtbb-dev
 
-* GSL
+GSL
 sudo apt-get install libgsl0-dev
 
-* Curses
+Curses
 sudo apt-get install libncurses-dev
 
-* VTK
+VTK
 sudo add-apt-repository ppa:elvstone/vtk7
 sudo apt-get update
 sudo apt-get install vtk7
 export LD_LIBRARY_PATH="/opt/VTK-7.0.0"i
 
-* Python
+Python
 sudo apt-get install libpython3.5-dev
 
 
