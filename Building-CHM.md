@@ -9,7 +9,7 @@
 * Paraview (if building the filter) otherwise VTK
 * C++11 compliant compiler
 
-# Building on Ubuntu 16.04
+# Building on Ubuntu 16.04:
 
 * GDAL
 sudo wget http://download.osgeo.org/gdal/2.1.0/gdal-2.1.0.tar.gz
@@ -18,7 +18,7 @@ cd gdal-2.1.0
 ./configure
 sudo make
 sudo make install
-
+ 
 * QT5
 sudo apt-get install libqt5svg5*
 sudo apt-get install qt5-default
