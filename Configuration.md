@@ -155,6 +155,7 @@ In the snowpack module, ```ATMOSPHERIC_STABILITY``` would be accessed as
 ```cpp
 cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 ```
+
 ```javascript
 //Consider this in a CHM.json file
 "config":
@@ -193,6 +194,7 @@ cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 	
 }
 ​```
+
 What the code does it put everything in the main {} of the <module-name>.json file under the module's name key in CHM.json, turning this 2nd example into EXACTLY the top example within the code.
 
 
