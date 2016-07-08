@@ -155,9 +155,6 @@ In the snowpack module, ```ATMOSPHERIC_STABILITY``` would be accessed as
 cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 ```
 ```json
-
-cmarsh [11:49]  
-added a JavaScript/JSON snippet 
 //Consider this in a CHM.json file
 "config":
 {
