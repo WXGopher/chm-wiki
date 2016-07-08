@@ -192,8 +192,7 @@ cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 		"LAI":3 
 	}
 	
-}
-​```
+}```
 
 What the code does it put everything in the main {} of the <module-name>.json file under the module's name key in CHM.json, turning this 2nd example into EXACTLY the top example within the code.
 
