@@ -154,7 +154,44 @@ In the snowpack module, ```ATMOSPHERIC_STABILITY``` would be accessed as
 ```cpp
 cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 ```
+```json
 
+cmarsh [11:49]  
+added a JavaScript/JSON snippet 
+//Consider this in a CHM.json file
+"config":
+{
+	"simple_canopy":  //this is the name of the module (this->ID in the code)
+						//everything below this key gets put into cfg
+						//so you never have to incl the module name in the cfg call,
+						//this is done automatically for the module
+	{
+		"canopy": //these are sub keys, within the module's cfg. These can be anything
+		{
+			"LAI":3 // cfg.get<double>("canopy.LAI")
+		}
+		
+	}
+}
+​
+//consider this in CHM.json
+"config":
+{
+	"simple_canopy":"canopy.json"	
+	
+}
+​
+//and canopy.json has
+{
+	"canopy": //these are sub keys, within the module's cfg. These can be anything
+	{
+		"LAI":3 // cfg.get<double>("canopy.LAI")
+	}
+	
+}
+​
+//what the code does it put everything in the main {} of the .json file under the module's name key in CHM.json, turning this 2nd example into EXACTLY the top example within the code
+```
 
 #meshes
 The meshes section has two sections:
