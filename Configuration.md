@@ -156,7 +156,7 @@ In the snowpack module, ```ATMOSPHERIC_STABILITY``` would be accessed as
 cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 ```
 Consider this in a CHM.json file
-```javascript
+```
 "config":
 {
 //this is the name of the module (this->ID in the code)
