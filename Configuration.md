@@ -155,9 +155,8 @@ In the snowpack module, ```ATMOSPHERIC_STABILITY``` would be accessed as
 ```cpp
 cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 ```
-
+Consider this in a CHM.json file
 ```javascript
-//Consider this in a CHM.json file
 "config":
 {
 //this is the name of the module (this->ID in the code)
@@ -197,7 +196,7 @@ cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 What the code does it put everything in the main {} of the <module-name>.json file under the module's name key in CHM.json, turning this 2nd example into EXACTLY the top example within the code.
 
 
-#meshes
+# meshes
 The meshes section has two sections:
 - mesh
 - parameters
