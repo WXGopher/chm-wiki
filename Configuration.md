@@ -129,7 +129,8 @@ Each module, upon creation is provided a configuration instance (see [modules](m
 ```
 would be accessed by the module as 
 ```cpp 
-cfg.get<bool>("no_slope")```
+cfg.get<bool>("no_slope")
+```
 
 If the configuration is sufficiently large or cumbersome, it may be best to have it in a separate file. This can be specified as
 ```json
@@ -154,7 +155,7 @@ In the snowpack module, ```ATMOSPHERIC_STABILITY``` would be accessed as
 ```cpp
 cfg.get<bool>("SnowpackAdvanced.ATMOSPHERIC_STABILITY");
 ```
-```json
+```javascript
 //Consider this in a CHM.json file
 "config":
 {
