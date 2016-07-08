@@ -27,15 +27,23 @@ The extent of ```dem_filename``` is used to define the simulation extent. Input 
 1 = Mean elevation difference 
 2 = RMSE tolerance 
 
+Currently only RMSE is allowed.
+
+
 ```parameter_files``` is a dictionary  that lists additional parameters. Because a triangle may cover more than one raster cell, the ```method``` variable specifies either 'mode' or 'mean'. This controls how the >1 cells are merged and assigned to a triangle. 'Mode' sets the triangle to be the value that is most common out of all cells.
 
 ```initial_conditions``` is a dictionary  that lists additional parameters. Because a triangle may cover more than one raster cell, the ```method``` variable specifies either 'mode' or 'mean'. This controls how the >1 cells are merged and assigned to a triangle. 'Mode' sets the triangle to be the value that is most common out of all cells.
 
+For both initial conditions and parameter files, an optional 'tolerance' can be set. If 'method' is 'mode', then this is a fractional percent of the dominate landcover to cover the triangle area to not split the triangle. Otherwise, it is RMSE in the units of the raster's value.
+
+If the input rasters are of different resolutions, then ```min_area``` should be set to approximately 1/4 the size of the coarsest raster. For example, if the dem is LiDAR at 1m x 1m, and landcover is present at 30m x 30m, then `min_area = 30^2 / 4` is a good starting point. This is to prevent the creation of small triangles along the coarse mesh edge.
 
 ```python
     parameter_files = {
         'landcover': { 'file' : 'eosd.tif',
-                       'method':'mode'},  # mode, mean
+                       'method':'mode',
+                        'tolerance':0.8
+},  # mode, mean
         'svf':{'file':'wolf_svf1.tif',
                'method':'mean'
                }
