@@ -10,6 +10,7 @@ This format is easily parseable with Pandas in Python
 ```python
 obs = pd.read_csv("uc_2005_2014.txt",sep="\t",parse_dates=[0])
 obs.set_index('datetime',inplace=True)
+obs.index = pd.to_datetime(obs.index)
 ```
 
 Various conversion scripts for other models' input/output are located in ```tools```
