@@ -225,10 +225,10 @@ Mesh parameters are not guaranteed to cover the entire extent of the of the DEM.
             }
         }
 ```
-# parameters
+# parameter_mapping
 Often, the parameters in the mesh may requires information. For example, landcover might be a numeric class value. The parameters can thus be arbitrary extra data. These can be thought of the meta-data for the on-mesh parameters. These parameters may be either located in another file:
 ```json 
-  "parameters":
+  "parameter_mapping":
   {
     "soil":"parameters/wolf_soil_param.json"
   }
