@@ -23,6 +23,13 @@ The config file is structured into key:value pairs separated by commas. Key name
 
 These are under ```option.X```:
 
+###interpolant
+Chooses either thin plate spline with tension (spline) or inverse distance weighting (idw). Defaults to spline.
+```json
+"interpolant" : "idw"
+"interpolant" : "spline"
+```
+
 ### point_mode
 Point mode selects that the model should be run in point mode, versus distributed mode. For point model to work, there must be an input and output station of the appropriate name. All other points will be ignored. Requires adding ```point_mode``` to the module list. Lastly, no modules which are defined ```parallel:domain``` may be used when ```point_mode:true``` is enabled. 
 ```json
