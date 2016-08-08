@@ -338,3 +338,31 @@ If a [filter](filters) is defined, it must be defined on the forcing file and op
      }
 ```
 
+If required, forcing station definitions can be located in an external file like thus:
+```json
+"forcing":
+  {
+    "buckbrush":
+     {
+       "file":"bb_1999-2002", // hm_oct2010 hm_oct2_4_2010 hm_sep_15_2006
+       "easting": 489216.601,
+       "northing": 6709533.168,
+       "elevation": 1305
+     },
+    "reanalysis_extract_": "external_file_1.json",
+   "reanalysis_extract_2": "external_file_2.json",
+}
+```
+where `external_file_*.json` looks like
+```json
+{
+ "station1":
+{
+ //details here
+},
+ "station2":
+{
+ //details here
+}
+}
+```
