@@ -338,7 +338,7 @@ If a [filter](filters) is defined, it must be defined on the forcing file and op
      }
 ```
 
-If required, forcing station definitions can be located in an external file like thus:
+If required, forcing station definitions can be located in an external file. For the external file, the name of the key doesn't matter. The external file should contain the stations in the format as per above. It does *not* require an adition `"forcing":` section definition. 
 ```json
 "forcing":
   {
