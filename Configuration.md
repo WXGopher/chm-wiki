@@ -23,6 +23,9 @@ The config file is structured into key:value pairs separated by commas. Key name
 
 These are under ```option.X```:
 
+###station_search_radius
+The search radius (meters) of stations to include for the interpolation at a triangle. Based off the center of the triangle. Defaults to 1000 m.
+
 ###interpolant
 Chooses either thin plate spline with tension (spline) or inverse distance weighting (idw). Defaults to spline.
 ```json
