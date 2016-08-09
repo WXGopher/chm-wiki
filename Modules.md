@@ -23,7 +23,7 @@ class data_parallel_example : public module_base
 public:
     data_parallel_example(config_file cfg);
     ~data_parallel_example();
-    void run(mesh_elem& elem, boost::shared_ptr<global> global_param);
+    void run(mesh_elem& face, boost::shared_ptr<global> global_param);
 }; 
 
 data_parallel_example::data_parallel_example(config_file cfg)
@@ -55,8 +55,8 @@ void run(mesh domain, boost::shared_ptr<global> global_param)
  #pragma omp parallel for
     for (size_t i = 0; i < domain->size_faces(); i++)
     {
-        auto elem = domain->face(i);
-       /** do stuff with elem **/
+        auto face = domain->face(i);
+       /** do stuff with face **/
     }
 }
 ```
@@ -122,11 +122,11 @@ class test : public module_base
 This sub-class then should be initialized on each element using ```make_module_data```. As the class' member variable ```ID``` is passed to the call to create and access the data, other modules' data is technically available for access. *Don't do this*.
 
 ```cpp
-auto d = elem->make_module_data<test::data>(ID);  #returns the instance just created
+auto d = face->make_module_data<test::data>(ID);  #returns the instance just created
 d->my_data = 5;
 
 #access later
-auto d = elem->get_module_data<test::data>(ID); 
+auto d = face->get_module_data<test::data>(ID); 
 ```
 
 ## interp_met modules
