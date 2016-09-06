@@ -56,7 +56,7 @@ VTK
 sudo add-apt-repository ppa:elvstone/vtk7
 sudo apt-get update
 sudo apt-get install vtk7
-export LD_LIBRARY_PATH="/opt/VTK-7.0.0"i
+export LD_LIBRARY_PATH="/opt/VTK-7.0.0"
 ```
 Python
 ```
