@@ -26,6 +26,11 @@ These are under ```option.X```:
 ###station_search_radius
 The search radius (meters) of stations to include for the interpolation at a triangle. Based off the center of the triangle. Defaults to 1000 m.
 
+###station_N_nearest
+Use the nearest N stations to include for the interpolation at a triangle. Based off the center of the triangle. Defaults to 5.
+
+Both `station_search_radius` and `station_N_nearest` cannot be simultaneously specified. If neither is specific, then `station_N_nearest:5` is used as default.
+
 ###interpolant
 Chooses either thin plate spline with tension (spline) or inverse distance weighting (idw). Defaults to spline.
 ```json
@@ -119,7 +124,7 @@ Modules order as defined in this list has no bearing on the order they are run. 
 # remove_depency
 Under some edge cases, a cyclic dependency is created when a module depends on A's output, and A depends on B's output. There is no way to automatically resolve this. It requires the modeller to manually break the cycle and force one module to run ahead of another (essentially time-lagged). 
 
-An example of this occuring is that the albedo models require knowledge of SWE, provided by the snowmodel. However, the snowmodel requires albedo to run. Therefore, the modeller may define that the albedo routine is run first, then the snowpack model.
+An example of this occurring is that the albedo models require knowledge of SWE, provided by the snowmodel. However, the snowmodel requires albedo to run. Therefore, the modeller may define that the albedo routine is run first, then the snowpack model. 
 
 In detail: if module A depends on B (A->B), then to remove the decency of B from A, specify it as ```"A":"B" ```
 ```json
@@ -128,6 +133,7 @@ In detail: if module A depends on B (A->B), then to remove the decency of B from
     "Richard_albedo":"snobal"
   }
 ```
+Essentially, think of it as `A` needs to come before `B`.
 
 #config
 Each module, upon creation is provided a configuration instance (see [modules](modules)). These configuration data are set by creating a key that exactly matches the module name. For example
@@ -297,12 +303,6 @@ Frequency can be set to write ever N timesteps. The pvd file will properly displ
 # global
 Global defines a set of globally applicable parameters. The key name is a unique identifier. If ```point_mode``` is being used, then the station used in ```point_mode``` must exist in this list.
 
-## latitude, longitude
-Awkwardly, the lat/long of the basin is given despite the underlying mesh being defined in UTM. ```longitude``` is negative westward.
-```json
-"latitude":60.52163,
-"longitude":-135.197151
-```
 ##UTC_offset
 The utc offset is used to determine solar parameters. Positive west.
 ```json
