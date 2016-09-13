@@ -4,6 +4,10 @@ Below, all options are detailed, however please note some configuration options 
 
 **An important note!** Do not prefix a number with zero (0). This is the octal prefix and it will cause the JSON parser to choke on lines that otherwise look fine.
 
+**Coordinate system** Currently, mesher produces meshes that projected in Albers Conic equal area. Support for full geographic exists, but there is an issue with computing surface normals. 
+
+Regardless of input coordinate system **all** input points are specified in latitude and longitude in WSG84.  
+
 The config file is structured into key:value pairs separated by commas. Key names are enclosed in quotes (" ").
 ```
 {
@@ -33,9 +37,11 @@ Both `station_search_radius` and `station_N_nearest` cannot be simultaneously sp
 
 ###interpolant
 Chooses either thin plate spline with tension (spline) or inverse distance weighting (idw). Defaults to spline.
+Nearest selects the closes station and only uses that with no interpolation. Not compatible with the above options.
 ```json
 "interpolant" : "idw"
 "interpolant" : "spline"
+"interpolant" : "nearest"
 ```
 
 ### point_mode
@@ -268,7 +274,7 @@ or as a key:value set. In all cases, the parameter name is how it will be refere
 Output may be either to a timeseries for a specific location on the mesh or it may be the entirety of the mesh.
 
 ### timeseries
-The name of the timeseries key is used to uniquely identify this output. A x,y coordinate (given as ```easting``` and ```northing```) is provided. The triangle that contains this point is then selected for output. An error is raised if no triangle contains the point. ```file``` denotes the output file name. The output is in csv format. ```timeseries``` is a legacy option and should be set to "timeseries" and forgotten.
+The name of the timeseries key is used to uniquely identify this output. A x,y coordinate (given as ```longitude``` and ```latitude```) is provided. The triangle that contains this point is then selected for output. An error is raised if no triangle contains the point. ```file``` denotes the output file name. The output is in csv format. ```timeseries``` is a legacy option and should be set to "timeseries" and forgotten.
 ```json
   "output":
   {
@@ -318,12 +324,12 @@ Forcing data are defined as an input [timeseries](timeseries) in tab delineated 
 "file":"bb_1999-2002"
 ```
 
-### easting, northing
-Easting and Northing of the input station
+### latitude, longitude
+Latitude and longitude of the input station
 
 ```json
-         "easting": 489216.601,
-         "northing": 6709533.168
+         "latitude": 489216.601,
+         "longitude": 6709533.168
 ```
 ### elevation
 Elevation is given in meters. It does *not* need to be equal to the elevation of the triangle upon which it lies if the station is located in the simulation domain.
