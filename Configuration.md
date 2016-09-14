@@ -272,6 +272,7 @@ or as a key:value set. In all cases, the parameter name is how it will be refere
 ```
 # output
 Output may be either to a timeseries for a specific location on the mesh or it may be the entirety of the mesh.
+Specify `output_dir` to change the output directory.
 
 ### timeseries
 The name of the timeseries key is used to uniquely identify this output. A x,y coordinate (given as ```longitude``` and ```latitude```) is provided. The triangle that contains this point is then selected for output. An error is raised if no triangle contains the point. ```file``` denotes the output file name. The output is in csv format. ```timeseries``` is a legacy option and should be set to "timeseries" and forgotten.
