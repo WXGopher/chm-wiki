@@ -33,7 +33,7 @@ will result in nproc being removed despite being added via ```-c```.
 Removes a module. Removals are processed after any --config parameters are parsed, so --remove will override -c. 
 
 ```
--r Marsh_shading_iswr
+-d Marsh_shading_iswr
 ```
 
 #add-module
