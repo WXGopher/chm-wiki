@@ -25,11 +25,9 @@ The extent of ```dem_filename``` is used to define the simulation extent. Input 
 ```min_area``` A minimum area (m^2) past which mesher should not refine a triangle further. A good setting is the square area of a DEM cell. This does not mean a triangle won't be smaller than this; rather, if a triangle is below this threshold it will automatically be accepted as valid. This will override the tolerance setting. For example, if the threshold is 3m^, and a 2m^ triangle is checked for validity, it will automatically be accepted, without checking the tolerance. A triangle may end up smaller than this threshold due to other splitting that occurs in order to guarantee triangle quality.
 
 ```errormetric``` Assigned an integer value that determines the error metric to use.
-1 = Mean elevation difference 
-2 = RMSE tolerance 
-
-Currently only RMSE is allowed.
-
+'mean_tol' = Mean elevation difference 
+'max_tol' = Max elevation difference
+'rmse'  = RMSE tolerance 
 
 ```parameter_files``` is a dictionary  that lists additional parameters. Because a triangle may cover more than one raster cell, the ```method``` variable specifies either 'mode' or 'mean'. This controls how the >1 cells are merged and assigned to a triangle. 'Mode' sets the triangle to be the value that is most common out of all cells.
 
@@ -82,6 +80,6 @@ simplify     =   False
 simplify_tol =   5   
 ```
 
-Mesher creates a directory with the same name as the input dem. This directory has the reprojected files (```*_projected```), Triangle's intermediary files (.node, .elem, .neigh), and the triangulation shape file (```*_USM.shp```).
+Mesher creates a directory with the same name as the input dem. This directory has the reprojected files (```*_projected```), Triangle's intermediary files (.node, .elem, .neigh), and the triangulation shape file (```*_USM.shp```). A ```*.vtu``` file is also created for visualizing in 3D in Paraview.
 
 
