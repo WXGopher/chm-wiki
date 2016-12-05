@@ -10,6 +10,7 @@ Experimental support is now enabled for lat/long input files. Due to the diversi
 The coordinate system of `dem_filename` is used for all other files. However, the user may specify `EPSG` in the configuration file, which will override the coordinate system of `dem_filename`.
 
 _Although lat long support works, it has implications for normal vector calculations that are not currently resolved. Therefore all input files are reprojected to a North American Albers Conic Conformal._
+
 ~~If a lat/long (i.e., geographic) dataset is found, a few things happen:~~
 - ~~Shortcuts in the meshing step cannot be taken, so meshing will likely take a bit longer~~
 - ~~CHM will scale all lat/long values by 100000 for the vtu output as Paraview seems to struggle rendering points so close to together.~~
