@@ -39,13 +39,22 @@ For both initial conditions and parameter files, an optional 'tolerance' can be 
 If the input rasters are of different resolutions, then ```min_area``` should be set to approximately 1/4 the size of the coarsest raster. For example, if the dem is LiDAR at 1m x 1m, and landcover is present at 30m x 30m, then `min_area = 30^2 / 4` is a good starting point. This is to prevent the creation of small triangles along the coarse mesh edge.
 
 ```python
+
+def my_classifier(value):
+    if value < .98:
+        value = 0
+    else:
+        value = 1
+    return value
+
     parameter_files = {
         'landcover': { 'file' : 'eosd.tif',
                        'method':'mode',
                         'tolerance':0.8
 },  # mode, mean
         'svf':{'file':'wolf_svf1.tif',
-               'method':'mean'
+               'method':'mean',
+               'classifier':my_classifier
                }
     }
 initial_conditions={
@@ -53,6 +62,9 @@ initial_conditions={
     'swe' : {'file': 'granger_swe_2001.tif', 'method':'mean'}
 }
 ```
+
+The classifier allows for reclassifying data within mesher so that data-loss from classifying on a raster is minimized.
+
 Complex basin shapes might result in the creation of many triangles along the complex edges. Thus ```simplify=True``` and ```simplify_tol``` can be used to simplify the basin outline. ```simplify_tol``` is the simplification tolerance specified in meters. Be careful as too high a tolerance will cause many lines to be outside of the bounds of the raster.
 
 
