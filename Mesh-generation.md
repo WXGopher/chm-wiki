@@ -9,11 +9,11 @@ Experimental support is now enabled for lat/long input files. Due to the diversi
 
 The coordinate system of `dem_filename` is used for all other files. However, the user may specify `EPSG` in the configuration file, which will override the coordinate system of `dem_filename`.
 
-If a lat/long (i.e., geographic) dataset is found, a few things happen:
-- Shortcuts in the meshing step cannot be taken, so meshing will likely take a bit longer
-- CHM will scale all lat/long values by 100000 for the vtu output as Paraview seems to struggle rendering points so close to together.
-- This scaling occurs during mesh read -- will be to be fixed later to be only in the vtu output.
-- When triangles are checked during meshing to get the parameter and initial conditions, the triangle is temporarily projected to an equal-area conic so-as to determine the area in m^2.
+_Although lat long support works, it has implications for normal vector calculations that are not currently resolved. Therefore all input files are reprojected to a North American Albers Conic Conformal._
+~~If a lat/long (i.e., geographic) dataset is found, a few things happen:~~
+- ~~Shortcuts in the meshing step cannot be taken, so meshing will likely take a bit longer~~
+- ~~CHM will scale all lat/long values by 100000 for the vtu output as Paraview seems to struggle rendering points so close to together.~~
+- ~~When triangles are checked during meshing to get the parameter and initial conditions, the triangle is temporarily projected to an equal-area conic so-as to determine the area in m^2.~~
 
 The extent of ```dem_filename``` is used to define the simulation extent. Input parameters are constrained to this extent. However, parameters need not cover the entire extent. Therefore modules *must* check that paramters are not NaN.
 
