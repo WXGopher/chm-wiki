@@ -24,6 +24,7 @@ QT5
 ```
 sudo apt-get install libqt5svg5*
 sudo apt-get install qt5-default
+sudo apt-get install libcgal-qt5-dev
 ```
 CGAL
 ```
