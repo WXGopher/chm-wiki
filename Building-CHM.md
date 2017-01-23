@@ -20,6 +20,11 @@ cd gdal-2.1.0
 sudo make
 sudo make install
  ```
+Proj4
+```
+sudo apt-get install libproj-dev
+```
+
 QT5
 ```
 sudo apt-get install libqt5svg5*
