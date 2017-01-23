@@ -24,7 +24,7 @@ QT5
 ```
 sudo apt-get install libqt5svg5*
 sudo apt-get install qt5-default
-sudo apt-get install libcgal-qt5-dev
+sudo apt-get install libcgal-qt5-dev  (note: optional, CHM not dependent on qt5 but required because of [this](https://github.com/CGAL/cgal/issues/471) bug)
 ```
 CGAL
 ```
