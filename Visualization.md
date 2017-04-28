@@ -29,7 +29,7 @@ To view the point labels:
 - Choose Point Labels drop down and select 'Station name'.
 - Use the cog next to 'selection colour' to change the display font (size, colour, etc) 
 
-![](viz_points.png)
+![](https://github.com/Chrismarsh/CHM/blob/master/viz_points.png)
 
 # Output points
 If single triangle point-output is selected, these points are written to a seperate vtp file in the output/points directory. To view, follow the above directions.
