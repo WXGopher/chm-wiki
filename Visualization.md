@@ -10,6 +10,19 @@ Optionally, copy the compiled filter into the plugins directory of paraview and 
 
 If mesh output is selected a pvd file, as well as multiple vtu files, are generated. The pvd file is an XML file that links each output to the julian date. This is required for showing the time. 
 
-To add the datetime filter to the view, load the vtp output and ensure this is selected the left pane. Then, ```Filters->Search``` and search for ```datetime```. 
+To add the datetime filter to the view, load the pvd file and ensure this is selected the left pane. Then, ```Filters->Search``` and search for ```datetime```. 
 
- 
+# Stations
+
+If any output is specified then a `staions.vtp` file is written to the root of the output folder. This is a point dataset of the x,y,z value of the forcing stations, as well as the station name as a label. To view the points in Paraivew:
+
+- Load the vtp file
+- With the vtp file selected in the Pipeline Browser, choose Point Gaussian as the representation. Change the radius so the point is visible, or decrease it if it is too large.
+
+To view the point labels:
+- Select vtp file in the pipeline browser
+- Create a new spreadhseet layout
+- Select the points you wish to have labels displayed for
+- View->Selection Display Inspector
+- Choose Point Labels drop down and select 'Station name'.
+- Use the cog next to 'selection colour' to change the display font (size, colour, etc) 
