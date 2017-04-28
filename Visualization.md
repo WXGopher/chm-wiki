@@ -1,6 +1,8 @@
 Visualization is via [Paraview](http://www.paraview.org/) if mesh output is enabled in the configuration file.
 
-A paraview plugin is built if ```PV_FILTER``` is enabled in CMakeLists.txt. This requires the paraview-dev libraries to be installed. Although included in CHM, the details of the filter can be found on it's [github page](https://github.com/Chrismarsh/vtk-paraview-datetimefilter). 
+# Datetime plugin
+
+A paraview plugin to show the date and time is built if ```PV_FILTER``` is enabled in CMakeLists.txt. This requires the paraview-dev libraries to be installed. Although included in CHM, the details of the filter can be found on it's [github page](https://github.com/Chrismarsh/vtk-paraview-datetimefilter). 
 
 ```Tools -> Manage Plugins -> Load new -> Navigate to build directory```
 After restarting Paraview, you will have to reload the plugin via ```Tools -> Manage Plugins -> Load Selected```
@@ -26,3 +28,6 @@ To view the point labels:
 - View->Selection Display Inspector
 - Choose Point Labels drop down and select 'Station name'.
 - Use the cog next to 'selection colour' to change the display font (size, colour, etc) 
+
+# Output points
+If single triangle point-output is selected, these points are written to a seperate vtp file in the output/points directory. To view, follow the above directions.
