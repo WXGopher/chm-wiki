@@ -16,7 +16,7 @@ To add the datetime filter to the view, load the pvd file and ensure this is sel
 
 # Stations
 
-If any output is specified then a `output_points.vtp` file is written to the root of the output folder. Forcing points are written to `stations.vtp` in the root output folder. The vtp files are a point dataset of the x,y,z value of the forcing stations, as well as the station name as a label. To view the points in Paraivew:
+For each forcing station/grid cell, a `stations.vtp` file is written to the root of the output folder. The vtp files are a point dataset of the x,y,z value of the forcing stations, as well as the station name as a label. (See below for output point location file). To view the points in Paraivew:
 
 - Load the vtp file
 - With the vtp file selected in the Pipeline Browser, choose Point Gaussian as the representation. Change the radius so the point is visible, or decrease it if it is too large.
@@ -32,4 +32,4 @@ To view the point labels:
 ![](https://github.com/Chrismarsh/CHM/blob/master/viz_points.png)
 
 # Output points
-If single triangle point-output is selected, these points are written to a seperate vtp file in the output/points directory. To view, follow the above directions.
+If single triangle point-output is selected, these points are written to a seperate vtp file (`output_points.vtp`) in the output/points directory. To view, follow the above directions.
