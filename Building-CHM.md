@@ -104,6 +104,10 @@ Older versions of VTK may have to patch here
 http://review.source.kitware.com/#/c/11956/5/Common/Core/vtkMath.h
 when building with C++11 
 
+on CentOS 7.3.1611 (CORE), e.g., WestGrid machines, requires the VTK patch in the main tree to circumvent this issue
+https://gitlab.kitware.com/vtk/vtk/issues/17077
+
+
 ##Google test
 Google test can be patched following
 
