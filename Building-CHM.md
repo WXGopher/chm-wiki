@@ -1,4 +1,4 @@
-#Dependencies
+# Dependencies
 * Matlab (optional)
 * Armadillo
 * boost
@@ -6,7 +6,9 @@
 * Intel TBB
 * GDAL (>2.0)
 * CGAL
-* Paraview (if building the filter) otherwise VTK
+* Paraview (if building the filter) 
+* VTK (if not building the filter)
+* ncurses
 * C++11 compliant compiler
 
 # Building on Ubuntu 16.04:
