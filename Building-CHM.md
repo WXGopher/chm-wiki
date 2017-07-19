@@ -11,6 +11,15 @@
 * ncurses
 * C++11 compliant compiler
 
+# Superbuild
+If SUPERBUILD is defined, CHM will download, patch, and build all required dependencies. To do this, do
+
+```
+cmake -DSUPERBUILD=TRUE .
+```
+
+Note, TBB is currently not built.
+
 # Building on Ubuntu 16.04:
 
 GDAL
