@@ -20,6 +20,11 @@ cmake -DSUPERBUILD=TRUE .
 
 Note, TBB is currently not built.
 
+If gperftools fails to build with an error about nanosleep it is due to this regression (?) with older gcc versions
+https://bugs.launchpad.net/ubuntu/+source/gcc-4.6/+bug/1269803
+
+disable tcmalloc with `-DUSE_TCMALLOC=FALSE`
+
 # Building on Ubuntu 16.04:
 
 GDAL
