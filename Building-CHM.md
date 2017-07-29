@@ -1,4 +1,5 @@
 # Dependencies
+* Cmake >3.3
 * Matlab (optional)
 * Armadillo
 * boost
@@ -24,6 +25,9 @@ If gperftools fails to build with an error about nanosleep it is due to this reg
 https://bugs.launchpad.net/ubuntu/+source/gcc-4.6/+bug/1269803
 
 disable tcmalloc with `-DUSE_TCMALLOC=FALSE`
+
+If using Intel's C++ compiler cmake version >=3.6 is required
+
 
 # Building on Ubuntu 16.04:
 
