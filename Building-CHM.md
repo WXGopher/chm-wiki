@@ -26,7 +26,8 @@ https://bugs.launchpad.net/ubuntu/+source/gcc-4.6/+bug/1269803
 
 disable tcmalloc with `-DUSE_TCMALLOC=FALSE`
 
-If using Intel's C++ compiler cmake version >=3.6 is required
+If using Intel's C++ compiler cmake version >=3.6 is required to build VTK/Paraview
+http://public.kitware.com/pipermail/paraview/2017-March/039725.html
 
 
 # Building on Ubuntu 16.04:
