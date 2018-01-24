@@ -78,6 +78,7 @@ and then in `init`, the module can query `global` as if CHM is in point-mode. If
     if(!global_param->is_point_mode())
         _parallel_type =  parallel::domain;
 ```
+`scale_wind_vert.cpp` is an example of this. 
 
 ## Variables
 
