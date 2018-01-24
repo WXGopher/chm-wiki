@@ -68,6 +68,17 @@ void example_module::init(mesh domain, boost::shared_ptr<global> global_param)
 ```
 Regardless of if the module is data or domain parallel, this function receives the entire mesh. ```init``` is called exactly once, after all other model setup has occurred, but prior to the main model execution loop. It is responsible for any initialization required by the model. An example of a complicated ```init``` is found in [Liston_wind](https://github.com/Chrismarsh/CHM/blob/master/src/modules/interp_met/Liston_wind.cpp) where the ```init``` function is used to pre-compute the wind curvature function.
 
+In some cases, a module may be able to work in either a domain parallel or a data parallel mode with little modification. To avoid duplicating code, a module may provide two `run` methods, one for each. Then, in the `init` function, it can change the type of parallelism that is declared. This is the only place where this change can be safely done. To do so, both run interfaces are exposed:
+```
+    virtual void run(mesh domain);
+    virtual void run(mesh_elem &face);
+```
+and then in `init`, the module can query `global` as if CHM is in point-mode. If not, it can safely switch to domain parallel. E.g.:
+```
+    if(!global_param->is_point_mode())
+        _parallel_type =  parallel::domain;
+```
+
 ## Variables
 
 ### Dependencies
