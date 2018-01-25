@@ -23,7 +23,7 @@ The config file is structured into key:value pairs separated by commas. Key name
 
 ```
 
-#option
+# option
 
 These are under ```option.X```:
 
@@ -106,7 +106,7 @@ By default, the model runs for the entirety of the input timeseries. ```enddate`
        "enddate":"20010502T000000"
 ```
 
-#modules
+# modules
 
 Modules order as defined in this list has no bearing on the order they are run. Note modules are in a list ([ ]). Modules may be commented out to remove them from execution. Module names are case sensitive. The ```point_mode``` module is required to enable point mode, in addition to being enable in ```option.point_mode```.
 ```json
@@ -141,7 +141,7 @@ In detail: if module A depends on B (A->B), then to remove the decency of B from
 ```
 Essentially, think of it as `A` needs to come before `B`.
 
-#config
+# config
 Each module, upon creation is provided a configuration instance (see [modules](modules)). These configuration data are set by creating a key that exactly matches the module name. For example
 ```json
 "slope_iswr":
