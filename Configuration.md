@@ -27,15 +27,15 @@ The config file is structured into key:value pairs separated by commas. Key name
 
 These are under ```option.X```:
 
-###station_search_radius
+### station_search_radius
 The search radius (meters) of stations to include for the interpolation at a triangle. Based off the center of the triangle. Defaults to 1000 m.
 
-###station_N_nearest
+### station_N_nearest
 Use the nearest N stations to include for the interpolation at a triangle. Based off the center of the triangle. Defaults to 5.
 
 Both `station_search_radius` and `station_N_nearest` cannot be simultaneously specified. If neither is specific, then `station_N_nearest:5` is used as default.
 
-###interpolant
+### interpolant
 Chooses either thin plate spline with tension (spline) or inverse distance weighting (idw). Defaults to spline.
 Nearest selects the closes station and only uses that with no interpolation. Not compatible with the above options.
 ```json
