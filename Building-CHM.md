@@ -41,27 +41,29 @@ To do a manual build of netCDF:
 ### Build HDF5
 https://support.hdfgroup.org/HDF5/release/obtainsrc.html
 ```
-./configure --prefix=/opt/netcdf --enable-cxx --enable-shared --enable-unsupported
-make
-make install
+$ ./configure --prefix=/opt/netcdf --enable-cxx --enable-shared --enable-unsupported
+$ make
+$ make install
 ```
 
 ### Build netCDF
 Use git master
  ```
+$ git clone https://github.com/Unidata/netcdf-c.git
+$ cd netcdf-c
 $ autoreconf -if
-$CPPFLAGS="-I/opt/netcdf/include" LDFLAGS="-L/opt/netcdf/lib" ./configure --prefix=/opt/netcdf
-make
-make install
+$ CPPFLAGS="-I/opt/netcdf/include" LDFLAGS="-L/opt/netcdf/lib" ./configure --prefix=/opt/netcdf
+$ make
+$ make install
 ```
 
 ### Build netCDF cxx
-Needs to be an out of source build
 ```
-$ cmake -DNETCDF_C_LIBRARY=/opt/netcdf/lib/libnetcdf.so -DnetCDF_INCLUDE_DIR=/opt/netcdf/include -DCMAKE_INSTALL_PREFIX=/opt/netcdf ../netcdf-cxx4
-
-make
-make install
+$ git clone https://github.com/Unidata/netcdf-cxx4.git
+$ cd netcdf-cxx4
+$ cmake -DNETCDF_C_LIBRARY=/opt/netcdf/lib/libnetcdf.so -DnetCDF_INCLUDE_DIR=/opt/netcdf/include -DCMAKE_INSTALL_PREFIX=/opt/netcdf .
+$ make
+$ make install
 ```
 and then build CHM with
 
