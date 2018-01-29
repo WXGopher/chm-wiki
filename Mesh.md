@@ -29,6 +29,7 @@ triangles = [
   [1,2,3]
 ]
 ```
+
 Above, this represents a single triangle.
 
 # Input
