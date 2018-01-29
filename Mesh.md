@@ -5,7 +5,7 @@ The internal topographic representation is via an unstructured triangular mesh (
 
 Internally, the mesh is held in a CGAL structure that provides various ease-of-use structures. The relevant files are in ```mesh/```. 
 
-#Iteration
+# Iteration
 Because the triangle iterators provided by CGAL have a non-deterministic order, as well as being incompatible with OpenMP, the way to access the i-th triangle is via
 ```cpp
 #pragma omp parallel for
@@ -31,5 +31,5 @@ triangles = [
 ```
 Above, this represents a single triangle.
 
-#Input
+# Input
 The input mesh is produced using the [mesher](mesher) tool. Please see the mesher documentation for more details. 
