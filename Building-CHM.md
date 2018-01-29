@@ -52,7 +52,7 @@ Use git master
 $ git clone https://github.com/Unidata/netcdf-c.git
 $ cd netcdf-c
 $ autoreconf -if
-$ CPPFLAGS="-I/opt/netcdf/include" LDFLAGS="-L/opt/netcdf/lib" ./configure --prefix=/opt/netcdf
+$ CPPFLAGS="-I/opt/netcdf/include" LDFLAGS="-L/opt/netcdf/lib" ./configure --prefix=/opt/netcdf --enable-netcdf-4 --enable-shared
 $ make
 $ make install
 ```
