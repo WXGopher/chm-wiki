@@ -11,6 +11,7 @@
 * VTK (if not building the filter)
 * ncurses
 * C++11 compliant compiler
+* netCDF C with c++ bindings
 
 # Superbuild
 If SUPERBUILD is defined, CHM will download, patch, and build all required dependencies. To do this, do
@@ -29,6 +30,37 @@ disable tcmalloc with `-DUSE_TCMALLOC=FALSE`
 If using Intel's C++ compiler cmake version >=3.6 is required to build VTK/Paraview
 http://public.kitware.com/pipermail/paraview/2017-March/039725.html
 
+# netCDF
+The NetCDF-cxx4 pre 4.2 does not work with CHM and thus 4.3+ is required. However, this generally requires building HDF5, netCDF, and netCDF cxx from source. NetCDF is fussy about which HDF5 version it is build against.
+
+Although there is a superbuild component for netCDF,  the cxx4 bindings do not reliably link against the custom built netcdf, and often end up linking against a system netcdf, causing runtime errors. 
+
+To do a manual build of netCDF:
+### Build HDF5
+https://support.hdfgroup.org/HDF5/release/obtainsrc.html
+```
+./configure --prefix=/opt/netcdf --enable-cxx --enable-shared --enable-unsupported
+make
+make install
+```
+
+### Build netCDF
+Use git master
+ ```
+$ autoreconf -if
+$CPPFLAGS="-I/opt/netcdf/include" LDFLAGS="-L/opt/netcdf/lib" ./configure --prefix=/opt/netcdf
+make
+make install
+```
+
+### Build netCDF cxx
+Needs to be an out of source build
+```
+$ cmake -DNETCDF_C_LIBRARY=/opt/netcdf/lib/libnetcdf.so -DnetCDF_INCLUDE_DIR=/opt/netcdf/include -DCMAKE_INSTALL_PREFIX=/opt/netcdf ../netcdf-cxx4
+
+make
+make install
+```
 
 # Building on Ubuntu 16.04:
 
