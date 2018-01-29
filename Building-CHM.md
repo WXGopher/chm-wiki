@@ -35,6 +35,8 @@ The NetCDF-cxx4 pre 4.2 does not work with CHM and thus 4.3+ is required. Howeve
 
 Although there is a superbuild component for netCDF,  the cxx4 bindings do not reliably link against the custom built netcdf, and often end up linking against a system netcdf, causing runtime errors. 
 
+If you need to build netCDF, then do a custom build of GDAL as the superbuild GDAL will not link against netcdf and hdf5. 
+
 To do a manual build of netCDF:
 ### Build HDF5
 https://support.hdfgroup.org/HDF5/release/obtainsrc.html
