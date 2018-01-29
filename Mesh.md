@@ -16,7 +16,7 @@ Because the triangle iterators provided by CGAL have a non-deterministic order, 
     }
 ```
 
-#Internal data structure
+# Internal data structure
 The mesh is represented as a vector of (x,y,z) points, connected via edges which are indexes into the vertex array. Thus, two vectors are held in memory as (pseudo code)
 ```python
 vertexes = [ 
