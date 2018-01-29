@@ -63,6 +63,11 @@ $ cmake -DNETCDF_C_LIBRARY=/opt/netcdf/lib/libnetcdf.so -DnetCDF_INCLUDE_DIR=/op
 make
 make install
 ```
+and then build CHM with
+
+```
+$cmake -DCMAKE_PREFIX_PATH=/opt/netcdf ~/CHM
+```
 
 # Building on Ubuntu 16.04:
 
