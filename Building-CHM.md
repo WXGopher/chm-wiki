@@ -30,6 +30,17 @@ disable tcmalloc with `-DUSE_TCMALLOC=FALSE`
 If using Intel's C++ compiler cmake version >=3.6 is required to build VTK/Paraview
 http://public.kitware.com/pipermail/paraview/2017-March/039725.html
 
+# Compile
+
+An out of source build should be used. This makes it easier to clean up and start from scratch.
+```
+mkdir ~/build-CHM
+cd ~/build-CHM
+cmake ~/CHM
+make -j10 CHM
+```
+
+
 # netCDF
 The NetCDF-cxx4 pre 4.2 does not work with CHM and thus 4.3+ is required. However, this generally requires building HDF5, netCDF, and netCDF cxx from source. NetCDF is fussy about which HDF5 version it is build against.
 
@@ -129,15 +140,6 @@ export LD_LIBRARY_PATH="/opt/VTK-7.0.0"
 Python
 ```
 sudo apt-get install libpython3.5-dev
-```
-# Build
-
-An out of source build should be used. This makes it easier to clean up and start from scratch.
-```
-mkdir ~/build-CHM
-cd ~/build-CHM
-cmake ~/CHM
-make -j10 CHM
 ```
 
 # Troubleshooting
