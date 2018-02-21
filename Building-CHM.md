@@ -130,38 +130,29 @@ Python
 ```
 sudo apt-get install libpython3.5-dev
 ```
+# Build
 
-#To build:
-    cmake .
-    make
+An out of source build should be used. This makes it easier to clean up and start from scratch.
+```
+mkdir ~/build-CHM
+cd ~/build-CHM
+cmake ~/CHM
+make -j10 CHM
+```
 
-#To test:
-    cmake .
-    make check
-    make test
-
-#Trouble shooting
-##Matlab
+# Troubleshooting
+## Matlab
 ### OSX 
 * Create a symbolic link from /usr/bin to the matlab install
 * ```sudo ln -s /Applications/MATLAB_R2013a.app/bin/matlab /usr/bin/matlab```
 
-###OSX:
-## Triangle
-Triangle needs to be edited to remove the fpu_control.h header
-    $ cat > /usr/include/fpu_control.h
-
-    #define _FPU_SETCW(cw) // nothing
-    #define _FPU_GETCW(cw) // nothing
-http://stackoverflow.com/a/4766863/410074
-
-###Linux:
+### Linux:
 Usage of the matlab engine requires installing csh
-##Intel compiler
+## Intel compiler
     /usr/lib/armadillo_bits/config.hpp
 comment out l. 173
 
-##VTK
+## VTK
 Older versions of VTK may have to patch here
 http://review.source.kitware.com/#/c/11956/5/Common/Core/vtkMath.h
 when building with C++11 
@@ -170,7 +161,7 @@ on CentOS 7.3.1611 (CORE), e.g., WestGrid machines, requires the VTK patch in th
 https://gitlab.kitware.com/vtk/vtk/issues/17077
 
 
-##Google test
+## Google test
 Google test can be patched following
 
 http://stackoverflow.com/questions/4655439/print-exception-what-in-google-test
