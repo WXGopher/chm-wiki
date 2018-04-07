@@ -1,4 +1,5 @@
 # Dependencies
+* autotools (if doing superbuild)
 * Cmake >3.3
 * Matlab (optional)
 * Armadillo
