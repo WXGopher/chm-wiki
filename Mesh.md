@@ -33,4 +33,4 @@ triangles = [
 Above, this represents a single triangle.
 
 # Input
-The input mesh is produced using the [mesher](mesher) tool. Please see the mesher documentation for more details. 
+The input mesh is produced using the [mesher](https://github.com/Chrismarsh/mesher) tool. Please see the mesher documentation for more details. 
