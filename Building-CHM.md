@@ -21,12 +21,13 @@ If SUPERBUILD is defined, CHM will download, patch, and build all required depen
 cmake -DSUPERBUILD=TRUE .
 ```
 
-Note, TBB is currently not built.
-
 If gperftools fails to build with an error about nanosleep it is due to this regression (?) with older gcc versions
 https://bugs.launchpad.net/ubuntu/+source/gcc-4.6/+bug/1269803
 
 disable tcmalloc with `-DUSE_TCMALLOC=FALSE`
+
+If GDAL fails with an error about sprintf, modify the `MakeLists_external.txt.in` file to include the DONT_DEPRECATE_SPRINTF
+https://github.com/Chrismarsh/CHM/blob/master/CMakeLists_external.txt.in#L146
 
 If using Intel's C++ compiler cmake version >=3.6 is required to build VTK/Paraview
 http://public.kitware.com/pipermail/paraview/2017-March/039725.html
