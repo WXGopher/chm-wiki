@@ -1,4 +1,4 @@
-Mesh generation is handled by the program located at ```tools/mesher/mesher.py```. Mesher depends heavily upon GDAL to handle the geospatial data and the GDAL python bindings. Mesher's input rasters can be in any 1-band raster that GDAL can open. The triangulation is performed using the Delaunay triangulation code in CGAL.
+Mesh generation is handled by the [Mesher](https://github.com/Chrismarsh/mesher) program. Mesher depends heavily upon GDAL to handle the geospatial data and the GDAL python bindings. Mesher's input rasters can be in any 1-band raster that GDAL can open. The triangulation is performed using the Delaunay triangulation code in CGAL.
 
 Configuration parameters are set in a second .py file and passed as an argument to ```main.py``` on the command line. For example:
 ```bash
