@@ -181,3 +181,6 @@ to print the boost::exception diagnostic information
     <       std::cout << boost::diagnostic_information(e) << std::endl;  \
     ---
     >     catch (...) { \
+# Machine specific fixes
+## Westgrid Graham
+Requires setting the DONT DEPRECATE SPRINTF CXXFLAG in CMakeList_external.in
