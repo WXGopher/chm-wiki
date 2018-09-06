@@ -15,7 +15,7 @@ For the general installation procedure, refer to the [CHM wiki](https://github.c
                 The imported target "CGAL::CGAL_Qt5" references the file
                 but this file does not exist.  Possible reasons include:
 
-    check the auto-generated log files. There is a chance the build system cannot resolve package dependencies on Linux systems, or you might miss some packages that the build system was not aware of. Trying to install those packages manually (through `apt-get` or a better way `aptitude`) will resolve this;
+    check the auto-generated log files and screen output (you may use `build_command 2>&1 |tee output.txt` and retrieve `output.txt`). There is a chance the build system cannot resolve package dependencies on Linux systems, or you might miss some packages that the build system was not aware of (this is most likely to happen on a fresh installed system). Trying to install those packages manually (through `apt-get` or a better way `aptitude`) will resolve this;
 
 3.  Make sure you are doing an out-of-source build, i.e., build source outside the source folder, like
 
@@ -133,7 +133,7 @@ The mesh structure (`.mesh` file) is formed as follows:
                     8160,
                     8043
                     ]
-              
+    
 
     So, the three edges of a triangle is from vertex 8033 $\rightarrow$ vertex 8160; vertex 8160 $\rightarrow$ vertex 8043; vertex 8043 $\rightarrow$ vertex 8033.
 
@@ -145,7 +145,7 @@ The mesh structure (`.mesh` file) is formed as follows:
                     16277,
                     15812
                     ],
-              
+    
 
     So triangle 0 has triangles 17687, 16277, and 15812 as neighbours.\
     If a triangle is an edge triangle, it’ll be missing a neighbour, denoted by -1:
