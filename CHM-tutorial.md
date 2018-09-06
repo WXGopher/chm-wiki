@@ -8,33 +8,33 @@ Installation
 
 For the general installation procedure, refer to the [CHM wiki](https://github.com/Chrismarsh/CHM/wiki/Building-CHM). A few tips for installation:
 
-1.  For `OS X` users, make sure you have `homebrew`, gcc, cmake installed, then simply invoke the `superbuild` instructions.
+1. For `OS X` users, make sure you have `homebrew`, gcc, cmake installed, then simply invoke the `superbuild` instructions.
 
-2.  If you encounter an error like
+2. If you encounter an error like
 
-                The imported target "CGAL::CGAL_Qt5" references the file
-                but this file does not exist.  Possible reasons include:
+               The imported target "CGAL::CGAL_Qt5" references the file
+               but this file does not exist.  Possible reasons include:
 
-    check the auto-generated log files and screen output (you may use `build_command 2>&1 |tee output.txt` and retrieve `output.txt`). There is a chance the build system cannot resolve package dependencies on Linux systems, or you might miss some packages that the build system was not aware of (this is most likely to happen on a fresh installed system). Trying to install those packages manually (through `apt-get` or a better way `aptitude`) will resolve this;
+   check the auto-generated log files and screen output (you may use `build_command 2>&1 |tee output.txt` and retrieve `output.txt`). There is a chance the build system cannot resolve package dependencies on Linux systems, or you might miss some packages that the build system was not aware of (this is most likely to happen on a fresh installed system). Trying to install those packages manually (through `apt-get` or a better way `aptitude`) will resolve this. Prerequisite packages (this list is not exaustive) including: `freeglut3-dev`, `python-dev`, `libxml2-dev`, `libxslt-dev`, `autotools`, `m4`.
 
-3.  Make sure you are doing an out-of-source build, i.e., build source outside the source folder, like
+3. Make sure you are doing an out-of-source build, i.e., build source outside the source folder, like
 
-          mkdir build
-          cd build
-          cmake -DSUPERBUILD=TRUE ../CHM_SOURCE
-          make -j10
+         mkdir build
+         cd build
+         cmake -DSUPERBUILD=TRUE ../CHM_SOURCE
+         make -j10
 
-4.  If you failed a build for whatever reason, run `clean_cmake.sh` before the next build attempt. The reason is `cmake` is known to be sticky on its configuration files and the cache might become stale;
+4. If you failed a build for whatever reason, run `clean_cmake.sh` before the next build attempt. The reason is `cmake` is known to be sticky on its configuration files and the cache might become stale;
 
-5.  Set up library path. Edit your `.bashrc`, and add
+5. Set up library path. Edit your `.bashrc`, and add
 
-          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:path_to_build/lib/gsl/lib
+         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:path_to_build/lib/gsl/lib
 
-    and do
+   and do
 
-          source ~/.bashrc
+         source ~/.bashrc
 
-6.  The default build option, though it uses a “release” build, should generate debugging symbols. If you want to leave out compiler optimizations to peek into how the code actually works, you would need to modify the corresponding cmake script.
+6. The default build option, though it uses a “release” build, should generate debugging symbols. If you want to leave out compiler optimizations to peek into how the code actually works, you would need to modify the corresponding cmake script.
 
 How it works
 ============
