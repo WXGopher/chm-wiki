@@ -224,7 +224,18 @@ Resources
 
 TBA
 
-A “Hello World” example {#apdx_hello_world}
+Convert this document to PDF
+=======================
+
+To convert this document to PDF, follow the instructions below:
+
+1. Install texlive, texlive-fonts-recommended, texlive-fonts-extra
+2. Install pandoc
+3. Copy `eisvogel.latex` to `~/.pandoc/templates`
+4. Execute `pandoc CHM-tutorial.md -o CHM-tutorial.pdf --from markdown --template eisvogel --listings`
+
+
+A “Hello World” example
 =======================
 
 Source code (JSON file) of the example is listed as follows:
