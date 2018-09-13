@@ -233,14 +233,12 @@ To convert this document to PDF, follow the instructions below:
 
 2. Install pandoc (version > 2)
 
-3. Install pandoc
+3. Copy `eisvogel.latex` to `~/.pandoc/templates`
 
-4. Copy `eisvogel.latex` to `~/.pandoc/templates`
-
-5. Execute `pandoc CHM-tutorial.md -o CHM-tutorial.pdf --from markdown --template eisvogel --listings -V options`. Options can be found [here](https://pandoc.org/MANUAL.html#variables-for-latex) and [here](https://github.com/Wandmalfarbe/pandoc-latex-template#custom-template-variables). For example:
+4. Execute `pandoc CHM-tutorial.md -o CHM-tutorial.pdf --from markdown --template eisvogel --listings -V options`. Options can be found [here](https://pandoc.org/MANUAL.html#variables-for-latex) and [here](https://github.com/Wandmalfarbe/pandoc-latex-template#custom-template-variables). For example:
 
    ```
-   pandoc CHM-tutorial.md -o CHM-tutorial.pdf --from markdown --pdf-engine=xelatex --template eisvogel --listings -V toc -V titlepage=true -V toc-own-page -V book -V title="CHM Tutorial"
+   pandoc CHM-tutorial.md -o CHM-tutorial.pdf --from markdown --template eisvogel --listings -V toc -V titlepage=true -V toc-own-page -V book -V title="CHM Tutorial"
    ```
 
 
