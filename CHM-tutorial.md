@@ -224,15 +224,25 @@ Resources
 
 TBA
 
-Convert this document to PDF
+Converting this document to PDF
 =======================
 
 To convert this document to PDF, follow the instructions below:
 
 1. Install texlive, texlive-fonts-recommended, texlive-fonts-extra
-2. Install pandoc
-3. Copy `eisvogel.latex` to `~/.pandoc/templates`
-4. Execute `pandoc CHM-tutorial.md -o CHM-tutorial.pdf --from markdown --template eisvogel --listings`
+
+2. Install pandoc (version > 2)
+
+3. Install pandoc
+
+4. Copy `eisvogel.latex` to `~/.pandoc/templates`
+
+5. Execute `pandoc CHM-tutorial.md -o CHM-tutorial.pdf --from markdown --template eisvogel --listings -V options`. Options can be found [here](https://pandoc.org/MANUAL.html#variables-for-latex) and [here](https://github.com/Wandmalfarbe/pandoc-latex-template#custom-template-variables). For example:
+
+   ```
+   pandoc CHM-tutorial.md -o CHM-tutorial.pdf --from markdown --template eisvogel -V toc -V titlepage=true -V toc-own-page -V book -V title="CHM Tutorial"
+   ```
+
 
 
 A “Hello World” example
