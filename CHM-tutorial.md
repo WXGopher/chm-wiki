@@ -34,7 +34,8 @@ For the general installation procedure, refer to the [CHM wiki](https://github.c
 
          source ~/.bashrc
 
-6. The default build option, though it uses a “release” build, should generate debugging symbols. If you want to leave out compiler optimizations to peek into how the code actually works, you would need to modify the corresponding cmake script.
+6. The default build option, though it uses a “release” build, should generate debugging symbols. If you want to leave out compiler optimizations to peek into how the code actually works, you would need to modify the corresponding cmake script (`-DCMAKE_BUILD_TYPE=RelWithDebInfo`, for example).
+7. A list of `LD_LIBRARY_PATH`: `build_dir/lib/gsl/lib:build_dir/lib:build_dir/lib/VTK-prefix/src/VTK/lib:build_dir/lib/VTK/lib:build_dir/lib/gperftools/lib:build_dir/lib/gsl/lib:build_dir/lib/boost/lib:build_dir/lib/netcdf-c/lib:build_dir/lib/ViennaCL/lib:build_dir/lib/sparsehash/lib:build_dir/lib/gdal/lib:build_dir/lib/hdf5/lib:build_dir/lib/proj4/lib`
 
 How it works
 ============
