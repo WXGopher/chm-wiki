@@ -15,7 +15,7 @@ For the general installation procedure, refer to the [CHM wiki](https://github.c
                The imported target "CGAL::CGAL_Qt5" references the file
                but this file does not exist.  Possible reasons include:
 
-   check the auto-generated log files and screen output (you may use `build_command 2>&1 |tee output.txt` and retrieve `output.txt`). There is a chance the build system cannot resolve package dependencies on Linux systems, or you might miss some packages that the build system was not aware of (this is most likely to happen on a fresh installed system). Trying to install those packages manually (through `apt-get` or a better way `aptitude`) will resolve this. Prerequisite packages (this list is not exaustive) including: `freeglut3-dev`, `python-dev`, `libxml2-dev`, `libxslt-dev`, `autotools`, `m4`, `libgmp-dev`, `MFPR`, `Armadillo(including BLAS, LAPACK, libboost-dev, etc.)`. `curl`. An even better way is to refer to [Building on Ubuntu 16.04](https://github.com/Chrismarsh/CHM/wiki/Building-CHM#building-on-ubuntu-1604)(manually install proj4/QT5/CGAL/Amardillo/TBB/Boost/GSL/Curses using `apt-get`)
+   check the auto-generated log files and screen output (you may use `build_command 2>&1 |tee output.txt` and retrieve `output.txt`). There is a chance the build system cannot resolve package dependencies on Linux systems, or you might miss some packages that the build system was not aware of (this is most likely to happen on a fresh installed system). Trying to install those packages manually (through `apt-get` or a better way `aptitude`) will resolve this. Prerequisite packages (this list is not exaustive) including: `freeglut3-dev`, `python-dev`, `libxml2-dev`, `libxslt-dev`, `autotools`, `m4`, `libgmp-dev`, `MFPR`, `Armadillo(including BLAS, LAPACK, libboost-dev, etc.)`. `curl`. An even better way is to refer to [Building on Ubuntu 16.04](https://github.com/Chrismarsh/CHM/wiki/Building-CHM#building-on-ubuntu-1604) (manually install proj4/QT5/CGAL/Amardillo/TBB/Boost/GSL/Curses using `apt-get`)
 
 3. Make sure you are doing an out-of-source build, i.e., build source outside the source folder, like
 
@@ -26,16 +26,15 @@ For the general installation procedure, refer to the [CHM wiki](https://github.c
 
 4. If you failed a build for whatever reason, run `clean_cmake.sh` before the next build attempt. The reason is `cmake` is known to be sticky on its configuration files and the cache might become stale;
 
-5. Set up library path. Edit your `.bashrc`, and add
+5. Set up library path. Edit your `.bashrc`, and add (`build_dir` refers to the path to `build`)
 
-         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:path_to_build/lib/gsl/lib
+         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build_dir/lib/gsl/lib:build_dir/lib:build_dir/lib/VTK-prefix/src/VTK/lib:build_dir/lib/VTK/lib:build_dir/lib/gperftools/lib:build_dir/lib/gsl/lib:build_dir/lib/boost/lib:build_dir/lib/netcdf-c/lib:build_dir/lib/ViennaCL/lib:build_dir/lib/sparsehash/lib:build_dir/lib/gdal/lib:build_dir/lib/hdf5/lib:build_dir/lib/proj4/lib
 
    and do
 
          source ~/.bashrc
 
-6. The default build option, though it uses a “release” build, should generate debugging symbols. If you want to leave out compiler optimizations to peek into how the code actually works, you would need to modify the corresponding cmake script (`-DCMAKE_BUILD_TYPE=RelWithDebInfo`, for example).
-7. A list of `LD_LIBRARY_PATH`: `build_dir/lib/gsl/lib:build_dir/lib:build_dir/lib/VTK-prefix/src/VTK/lib:build_dir/lib/VTK/lib:build_dir/lib/gperftools/lib:build_dir/lib/gsl/lib:build_dir/lib/boost/lib:build_dir/lib/netcdf-c/lib:build_dir/lib/ViennaCL/lib:build_dir/lib/sparsehash/lib:build_dir/lib/gdal/lib:build_dir/lib/hdf5/lib:build_dir/lib/proj4/lib`
+6. The default build option, though it uses a “release” build, should generate debugging symbols. Another option to keep compiler optimizations but still generate debugging symbols is `-DCMAKE_BUILD_TYPE=RelWithDebInfo`.
 
 How it works
 ============
