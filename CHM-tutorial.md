@@ -46,7 +46,7 @@ Configuration parser
 
 Every aspect of the model structure including initial conditions, modules (and their parameters), forcing data, and output data can be modified through either the command line or through a JSON configuration file. Specifying parameters through the command line allows quick on-the-fly testing without compromising some base configuration files.
 
-A sample JSON configuration file is listed in Appendix \[apdx\_hello\_world\].
+A sample JSON configuration file is listed in Appendix.
 
 ### Command line
 
@@ -68,7 +68,7 @@ Specifying options through the [command line](https://github.com/Chrismarsh/CHM/
 
     -m snobal -m Marsh_shading_iswr
 
-### Configuration files {#sec_config}
+### Configuration files
 
 [Configuration](https://github.com/Chrismarsh/CHM/wiki/Configuration) for CHM is via a structured JSON file. The config file is structured into “key:value” pairs separated by commas. Key names are enclosed in quotes (“ ”), for example:
 
@@ -157,7 +157,7 @@ The mesh structure (`.mesh` file) is formed as follows:
                     ],
 
 
-Filters {#sec_filters}
+Filters 
 -------
 
 [Filters](https://github.com/Chrismarsh/CHM/wiki/Filters) are a mechanism whereby the input forcing data can be modified in some way prior to the model run. For example, this could be use to apply a gauge undercatch to precipitation. Filters modify the data of a station in situ.
@@ -169,7 +169,7 @@ Input Timeseries
 
 Time series data are input in a tab delimitated format. Refer to [Timeseries](https://github.com/Chrismarsh/CHM/wiki/Timeseries) for accepted format.
 
-Modules and parallelization {#sec_module}
+Modules and parallelization
 ---------------------------
 
 [Modules](https://github.com/Chrismarsh/CHM/wiki/Modules) are the short-hand for a process representation. A principal design goal of a module is that it may depend upon either some set of variables produced by other modules or on input forcing data. Modules define a set of variables which it provides globally to other modules. A module may not overwrite a variable that another module declares. It should also not overwrite the variables of another module. Implementation details on modules can be found [here](https://github.com/Chrismarsh/CHM/wiki/Modules#implementation-details).
