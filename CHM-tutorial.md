@@ -219,6 +219,12 @@ Visualization is via [Paraview](https://www.paraview.org/) if mesh output is ena
 
 To convert the Paraview output (vtu files) to arbitrary GIS format, refer to [this](https://github.com/Chrismarsh/CHM/wiki/VTU-conversion) page.
 
+
+
+## Known Issues
+
+1. CHM uses `tcmalloc` for memory allocation. There is a known deadlock [issue](https://github.com/gperftools/gperftools/issues/1037) for `tcmalloc` used with `gperftools` (or any similar profiler, like Intel VTune). To resolve this, build CHM without `tcmalloc`: `-DUSE_TCMALLOC=OFF`
+
 Resources
 =========
 
